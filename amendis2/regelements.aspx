@@ -36,7 +36,7 @@
         <p>Les dossiers présentés doivent se conformer aux prescriptions du Règlement Particulier des Appels d’Offres (cf.RPAQ).<br />
             Les entreprises sont informées des résultats des évaluations effectuées.</p>
 
-        <a class="ml-6 flex flex-row items-center text-blue-600" href="Default.aspx">
+        <a class="ml-6 flex flex-row items-center text-blue-600" href="Acceuil.aspx">
             <img class="h-12 w-12 rounded-xl" src="img/pdf.jpg" />
             Télécharger les documments
         </a>

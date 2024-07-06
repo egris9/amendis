@@ -18,11 +18,11 @@
         <p> A cet effet, Amendis a élaboré une charte responsables, les soumissionnaires sont tenus d'en prendre connaissance,
             l'approuver, et veiller à son respect.</p>
 
-    <a class="ml-6 flex flex-row items-center text-blue-600" href="Default.aspx">
+    <a class="ml-6 flex flex-row items-center text-blue-600" href="Acceuil.aspx">
         Télécharger la Charte Achats Responsables Version française </a>
 
 
-    <a class="ml-6 flex flex-row items-center text-blue-600" href="Default.aspx">
+    <a class="ml-6 flex flex-row items-center text-blue-600" href="Acceuil.aspx">
         Télécharger la Charte Achats Responsables Version Arabe </a>
         
     <p> Amendis organise annuellement au profit de ses fournisseurs et de ses sous-traitants des
