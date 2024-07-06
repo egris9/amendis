@@ -11,7 +11,36 @@ namespace amendis2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Initialize any data or state here if needed
+            }
 
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // Retrieve form values
+            string requestType = RequestTypeDropDown.SelectedValue;
+            string companyName = CompanyNameTextBox.Text;
+            string fullName = FullNameTextBox.Text;
+            string phoneNumber = PhoneNumberTextBox.Text;
+            string email = EmailTextBox.Text;
+            string message = MessageTextBox.Text;
+
+            // Implement your logic here, for example:
+            // - Validate input
+            // - Save data to a database
+            // - Send an email
+            // - Display a success message
+
+            // For demonstration, let's display the collected data
+            Response.Write("<script>alert('Form Submitted Successfully!');</script>");
+            Response.Write("<br />Type de demande: " + requestType);
+            Response.Write("<br />Nom de la société: " + companyName);
+            Response.Write("<br />Nom/Prénom: " + fullName);
+            Response.Write("<br />N° de Téléphone: " + phoneNumber);
+            Response.Write("<br />Email: " + email);
+            Response.Write("<br />Message: " + message);
         }
     }
 }
