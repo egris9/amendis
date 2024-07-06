@@ -9,8 +9,8 @@
                 <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
                 <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Avis d'appels d'offres</a>
                 <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a>
-                <div class="relative">
-                    <input type="checkbox" id="sortbox" class="absolute hidden">
+                <form class="relative">
+                    <input type="checkbox" id="sortbox" class="peer absolute h-0 w-0">
                     <label for="sortbox" class="flex cursor-pointer items-center space-x-1">
                         <span class="font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300">Relations Fournisseurs</span>
                         <svg class="h-4 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,13 +18,13 @@
                         </svg>
                     </label>
 
-                    <div id="sortboxmenu" class="opacity-0 z-40 absolute right-1 top-full isolate mt-1 min-w-max rounded border border-gray-400 shadow transition delay-75 ease-in-out dark:bg-neutral-700">
+                    <div id="sortboxmenu" class="opacity-0 z-40 absolute right-1 top-full isolate mt-1 min-w-max rounded border border-gray-400 shadow transition delay-75 ease-in-out dark:bg-neutral-700 peer-checked:opacity-1">
                         <ul class="block font-medium text-white">
                             <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/regelements">Règlements des marchés</a></li>
                             <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/demarches">Démarches Progrès social​</a></li>
                         </ul>
                     </div>
-                </div>
+                </form>
                 <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Programmes d'investissements</a>
                 <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a>
 
