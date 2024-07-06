@@ -1,0 +1,40 @@
+﻿<!-- ========== HEADER ========== -->
+<header class="text-[17px] z-50 flex w-full flex-wrap md:justify-start md:flex-nowrap">
+    <nav class="rounded-[36px] w-[1700px] relative mx-2 mt-3 h-16 max-w-full border border-gray-200 bg-neutral-700 px-4 py-6 dark:border-neutral-700 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto">
+        <div class="flex items-center justify-between">
+            <img class="rounded-xl" src="img/logo1.png" />
+        </div>
+        <div id="navbar-collapse-with-animation" class="hs-collapse hidden grow basis-full transition-all duration-300 md:block">
+            <div class="flex flex-col py-2 md:flex-row md:items-center md:justify-end md:py-0 md:ps-7">
+                <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Acceuil</a>
+                <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Avis d'appels d'offres</a>
+                <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a>
+                <div class="relative">
+                    <input type="checkbox" id="sortbox" class="absolute hidden">
+                    <label for="sortbox" class="flex cursor-pointer items-center space-x-1">
+                        <span class="font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300">Relations Fournisseurs</span>
+                        <svg class="h-4 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </label>
+
+                    <div id="sortboxmenu" class="opacity-0 z-40 absolute right-1 top-full isolate mt-1 min-w-max rounded border border-gray-400 shadow transition delay-75 ease-in-out dark:bg-neutral-700">
+                        <ul class="block font-medium text-white">
+                            <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/regelements">Règlements des marchés</a></li>
+                            <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/demarches">Démarches Progrès social​</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Programmes d'investissements</a>
+                <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Nous contacter</a>
+
+
+
+                <a class="text-[17px] ms-3 flex items-center gap-x-2 py-2 ps-px font-medium dark:text-white sm:px-3 md:ms-6 dark:hover:text-neutral-300" runat="server" href="#">
+                    Se connecter
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- ========== END HEADER ========== -->
