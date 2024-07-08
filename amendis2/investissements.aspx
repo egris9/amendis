@@ -3,7 +3,6 @@
 
 
     <main aria-labelledby="title">
-    <!--#include file="nav.html" -->
 
     <div class="ml-64 mt-14 flex flex-col gap-y-7">
         <h3 class="text-4xl">Programmes d'investissements​</h3>

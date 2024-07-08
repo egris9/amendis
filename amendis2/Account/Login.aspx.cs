@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using amendis2.Models;
+using System.Web.Security;
 
 namespace amendis2.Account
 {
@@ -33,7 +34,7 @@ namespace amendis2.Account
 
                 // This doen't count login failures towards account lockout
                 // To enable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
+                var result = signinManager.PasswordSignIn(UsernameOrEmail.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
 
                 switch (result)
                 {
@@ -56,6 +57,20 @@ namespace amendis2.Account
                         break;
                 }
             }
+            string username = UsernameOrEmail.Text;
+            string password = Password.Text;
+
+            // Replace with your user validation logic
+            if (username == "admin" && password == "password")
+            {
+                // Redirect to dashboard.aspx upon successful login
+                Response.Redirect("~/Admin/Dashboard.aspx");
+            }
+            else
+            {
+                FailureText.Text = "Invalid username or password.";
+            }
+
         }
     }
 }

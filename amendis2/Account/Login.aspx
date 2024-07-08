@@ -16,9 +16,9 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="mb-4">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="block text-xl font-medium text-white">Email :</asp:Label>
-                        <asp:TextBox runat="server" ID="Email" CssClass="form-input mt-1 block w-full rounded-md border border-gray-300 p-1" TextMode="Email" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" CssClass="text-sm text-red-500" ErrorMessage="The email field is required." />
+                        <asp:Label runat="server" AssociatedControlID="UsernameOrEmail" CssClass="block text-xl font-medium text-white">Nom d'utilisateur ou Email :</asp:Label>
+                        <asp:TextBox runat="server" ID="UsernameOrEmail" CssClass="form-input mt-1 block w-full rounded-md border border-gray-300 p-1" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="UsernameOrEmail" CssClass="text-sm text-red-500" ErrorMessage="The username or email field is required." />
                     </div>
                     <div class="mb-4">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="block text-xl font-medium text-white">Mot de passe :</asp:Label>

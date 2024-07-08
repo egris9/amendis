@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="amendis2.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-     <!--#include file="nav.html" -->
+
      <main aria-labelledby="title">
          <div class="container mx-auto p-4">
              <h2 class="mb-10 flex justify-center text-4xl font-medium">Nous Contacter</h2>

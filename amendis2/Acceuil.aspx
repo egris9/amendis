@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Acceuil.aspx.cs" Inherits="amendis2.Acceuil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <!--#include file="nav.html" -->
+     
  <main>
      <div class="flex justify-center p-7">
          <p class="text-3xl font-medium">• Bienvenue sur le site web Achats Amendis</p>
