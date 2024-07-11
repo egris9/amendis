@@ -11,7 +11,7 @@ namespace amendis2
 {
 
 
-    public partial class About
+    public partial class Mattribues
     {
     }
 }

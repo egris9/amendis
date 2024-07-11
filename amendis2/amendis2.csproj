@@ -145,7 +145,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Acceuil.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -163,6 +162,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="AoEncours.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="demarches.aspx" />
@@ -171,6 +171,7 @@
     <Content Include="img\logo1.png" />
     <Content Include="img\pdf.jpg" />
     <Content Include="investissements.aspx" />
+    <Content Include="Mattribues.aspx" />
     <Content Include="regelements.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -338,14 +339,14 @@
     <Compile Include="Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="AoEncours.aspx.cs">
+      <DependentUpon>AoEncours.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="AoEncours.aspx.designer.cs">
+      <DependentUpon>AoEncours.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -372,6 +373,13 @@
     </Compile>
     <Compile Include="investissements.aspx.designer.cs">
       <DependentUpon>investissements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mattribues.aspx.cs">
+      <DependentUpon>Mattribues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mattribues.aspx.designer.cs">
+      <DependentUpon>Mattribues.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
