@@ -4,9 +4,8 @@
     
     <main aria-labelledby="title">
 
-    <div class="ml-64 mt-14 flex flex-col gap-y-3">
-        <h3 class="mb-4 text-4xl">Règlements des marchés​</h3>
-        <asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink>
+    <div class="mx-14 mb-12 mt-14 flex flex-col gap-y-3 2xl:text-lg lg:ml-60">
+        <h3 class="mb-4 text-2xl md:text-3xl lg:text-4xl">Règlements des marchés​</h3>
         <p>
             Amendis est une société en charge de la gestion déléguée de l’eau, de l’électricité et de l’assainissement liquide
             à la région de Tanger et Tétouan

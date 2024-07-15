@@ -13,6 +13,7 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,600,0,0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
     #dropdown_test:checked ~ #sortboxmenu {
@@ -51,7 +52,7 @@
                     <img class="rounded-xl" src="img/logo1.png" />
                 </div>
                 <div id="navbar-collapse-with-animation" class="hs-collapse hidden grow basis-full transition-all duration-300 md:block">
-                    <div class="flex flex-col py-2 md:flex-row md:items-center md:justify-end md:py-0 md:ps-7">
+                    <div class="xl:gap-8 xl:text-lg md:text-sm flex flex-col py-2 md:flex-row md:items-center md:justify-end md:py-0 md:ps-7">
                         <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
                         <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Avis d'appels d'offres</a>
                         <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a>
@@ -73,9 +74,7 @@
                         </div>
                         <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a>
                         <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a>
-
-
-
+            
                         <asp:LoginView runat="server" ViewStateMode="Enabled">
                             <AnonymousTemplate>
                                 <a class="text-[17px] ms-3 flex items-center gap-x-2 py-2 ps-px font-medium dark:text-white sm:px-3 md:ms-6 dark:hover:text-neutral-300" runat="server" href="Account/Login.aspx">

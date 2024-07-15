@@ -3,7 +3,7 @@
 
     <main aria-labelledby="title">
 
-<div class="ml-64 mt-14 flex flex-col gap-y-7">
+<div class="mx-14 mb-12 mt-14 flex flex-col gap-y-7 2xl:text-lg lg:ml-60">
     <h3 class="text-4xl">Démarches Progrès social​​</h3>
     <p>  Amendis adopte une démarche de progrès social auprès de ses fournisseurs 
         afin de s’assurer que les normes de sécurité, d'hygiène, 
