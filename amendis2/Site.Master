@@ -46,15 +46,15 @@
 
         <!-- ========== HEADER ========== -->
         <header class="text-[17px] z-50 flex w-full flex-wrap md:justify-center md:flex-nowrap">
-            <nav class="rounded-[36px] w-[1700px] relative mx-2 mt-3 h-16 max-w-full border border-gray-200 bg-neutral-700 px-4 py-6 dark:border-neutral-700 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto">
+            <nav class="rounded-[36px] w-[1700px] relative mx-2 mt-3 h-16 max-w-full border  bg-neutral-500 px-4 py-6 dark:border-neutral-500 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto">
                 <div class="flex items-center justify-between">
                     <img class="rounded-xl" src="img/logo1.png" />
                 </div>
                 <div id="navbar-collapse-with-animation" class="hs-collapse hidden grow basis-full transition-all duration-300 md:block">
                     <div class="flex flex-col py-2 md:flex-row md:items-center md:justify-end md:py-0 md:ps-7">
                         <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
-                        <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Avis d'appels d'offres</a>
-                        <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a>
+                        <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="AoEncours.aspx">Avis d'appels d'offres</a>
+                        <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Mattribues.aspx">Marchés attribués</a>
                         <div class="relative">
                             <input type="checkbox" id="dropdown_test" class="invisible absolute">
                             <label for="dropdown_test" class="flex cursor-pointer items-center space-x-1">
@@ -106,7 +106,7 @@
 
 
      <!-- ========== FOOTER ========== -->
-     <footer class="mt-auto w-full max-w-full py-4 px-4 sm:px-6 lg:px-8 mx-auto dark:bg-neutral-700 dark:border-neutral-700 flex items-center justify-center">
+     <footer class="mt-auto w-full max-w-full py-4 px-4 sm:px-6 lg:px-8 mx-auto dark:bg-neutral-500 dark:border-neutral-500 flex items-center justify-center">
        <!-- Grid -->
        <div>
          <div class="flex items-center">
