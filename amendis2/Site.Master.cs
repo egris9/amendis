@@ -15,8 +15,11 @@ namespace amendis2
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        
+        
+        
 
-        protected void Page_Init(object sender, EventArgs e)
+    protected void Page_Init(object sender, EventArgs e)
         {
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];

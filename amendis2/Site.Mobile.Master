@@ -49,72 +49,72 @@
             </Scripts>
         </asp:ScriptManager>
         <!-- ========== HEADER ========== -->
-        <header class="text-[17px] z-50 flex relative w-full flex-wrap md:justify-center md:flex-nowrap">
-                <nav class="rounded-[36px]  mx-2 mt-3 h-16 flex w-[1700px] justify-between border border-gray-200 bg-neutral-700 px-4 py-6 dark:border-neutral-700 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 ">
-                    <div class="flex items-center justify-between w-full">
-                        <img class="rounded-xl self-center " src="img/logo1.png" />
-
+        <% if (!IsLoginPage) { %>
+            <header class="text-[17px] z-50 flex relative w-full flex-wrap md:justify-center md:flex-nowrap">
+                <nav class="rounded-[36px]  mx-2 mt-3 h-16 flex w-[1700px] justify-between bg-neutral-500 px-4 py-6 dark:border-neutral-700 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 ">
+                    <div class="flex items-center justify-between  w-full">
+                        <img class="rounded-xl self-center " src='<%= ResolveUrl("img/logo1.png")%>' />
 
                         <div class="min-[930px]:hidden w-full ">
                             <input type="checkbox" id="dropdown" class="hidden peer"/>
                             <label for="dropdown" class="w-fit cursor-pointer block ml-auto">
                                    <i class="text-white ri-menu-line"></i>
                             </label>
-                            <div class="absolute rounded-[15px] p-5 -translate-x-1/2 left-1/2 top-[110%] pb-36  w-[96%] bg-amber-500  peer-checked:flex hidden flex-col">
-                                <ul class="block font-medium text-black">
-                                    <li> <a class="py-3 ps-px font-medium  sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a></li>
-                                    <li> <a class="py-3  ps-px font-medium sm:px-3 dark:hover:text-neutral-300" runat="server" href="~/appels_offres">Avis d'appels d'offres</a></li>
-                                    <li> <a class="py-3 ps-px font-medium  sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a></li>
+                            <div class="absolute rounded-[15px] p-5 -translate-x-1/2 left-1/2 top-[110%] pb-36  w-[96%] bg-neutral-500  peer-checked:flex hidden flex-col">
+                                <ul class="block font-medium text-white">
+                                    <li> <a class="whitespace-nowrap py-3 ps-px font-medium  sm:px-3 " runat="server" href="Acceuil.aspx">Acceuil</a></li>
+                                    <li> <a class="whitespace-nowrap	py-3  ps-px font-medium sm:px-3 " runat="server" href="~/appels_offres">Avis d'appels d'offres</a></li>
+                                    <li> <a class="whitespace-nowrap	py-3 ps-px font-medium  sm:px-3 " runat="server" href="#">Marchés attribués</a></li>
                                     <li> <div class="relative">
                                          <input type="checkbox" id="dropdown_nav" class="hidden peer"/>
                                          <label for="dropdown_nav" class="flex cursor-pointer items-center space-x-1">
-                                             <span class="font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300">Relations Fournisseurs</span>
+                                             <span class="whitespace-nowrap	font-medium text-white sm:px-3 ">Relations Fournisseurs</span>
                                              <svg class="h-4 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                              </svg>
                                          </label>
-                                         <div class="absolute z-40 left-10px mt-1 min-w-max rounded border border-gray-400 shadow dark:bg-neutral-700 peer-checked:flex hidden flex-col">
-                                             <ul class="block font-medium text-black">
+                                         <div class="absolute z-40 left-10px mt-1 min-w-max rounded border border-gray-400 shadow dark:bg-neutral-500 peer-checked:flex hidden flex-col">
+                                             <ul class="block font-medium text-white">
                                                  <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="regelements.aspx">Règlements des marchés</a></li>
                                                  <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/demarches">Démarches Progrès social​</a></li>
                                              </ul>
                                          </div>
                                      </div></li>
-                                    <li><a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a></li>
-                                    <li><a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a></li>
+                                    <li><a class="whitespace-nowrap	 py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a></li>
+                                    <li><a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a></li>
                                 </ul>
                             </div>
                         </div>
- 
-
-
                     </div>
 
-                    <div id="navbar-collapse-with-animation" class="hidden w-full min-[930px]:flex min-[930px]:w-auto min-[930px]:items-center">
-                        <div class="min-[930px]:text-[0.8rem] min-[990px]:text-[0.91rem] min-[1114px]:text-[17px] min-[1180px]:gap-2 min-[1255px]:gap-6 min-[1360px]:gap-[2.8rem] min-[1486px]:gap-16  min-[1590px]:gap-x-20 min-[1776px]:gap-[6rem]  flex flex-col py-2 min-[930px]:flex-row min-[930px]:items-center min-[930px]:justify-end min-[930px]:py-0 ">
-                            <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
-                            <a class="py-3 ps-px w-max font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="~/appels_offres">Avis d'appels d'offres</a>
-                            <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a>
-                            <div class="relative">
+
+
+
+                    <div id="navbar-collapse-with-animation" class="hidden  justify-center w-full min-[930px]:flex min-[930px]:w-auto min-[930px]:items-center">
+                        <div class="min-[1424px]:gap-2 min-[1234px]:gap-14 min-[1350px]:gap-10 min-[1550px]:gap-8 min-[1026px]:gap-14 min-[1140px]:gap-10 min-[930px]:gap-10 flex flex-col py-2 min-[930px]:flex-row min-[930px]:items-center min-[930px]:justify-end min-[930px]:py-0 ">
+                            <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
+                            <a class="whitespace-nowrap	py-3 ps-px w-max font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="~/appels_offres">Avis d'appels d'offres</a>
+                            <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a>
+                            <div class="relative hidden min-[1350px]:block">
                                 <input type="checkbox" id="dropdown_test" class="hidden peer"/>
                                 <label for="dropdown_test" class="flex cursor-pointer items-center space-x-1">
-                                    <span class="font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300">Relations Fournisseurs</span>
-                                    <svg class="h-4 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <span class="whitespace-nowrap	font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300">Relations Fournisseurs</span>
+                                    <svg class="h-4 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </label>
-                                <div class="absolute z-40 right-1 mt-1 min-w-max rounded border border-gray-400 shadow dark:bg-neutral-700 peer-checked:flex hidden flex-col">
+                                <div class="absolute z-40 right-1 mt-1 min-w-max rounded border border-gray-400 shadow dark:bg-neutral-500 peer-checked:flex hidden flex-col">
                                     <ul class="block font-medium text-white">
                                         <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="regelements.aspx">Règlements des marchés</a></li>
                                         <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/demarches">Démarches Progrès social​</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a>
-                            <a class="py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a>
+                            <a class="max-[1425px]:hidden whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a>
+                            <a class="hidden min-[1140px]:block whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a>
                             <asp:LoginView runat="server" ViewStateMode="Enabled">
                                 <AnonymousTemplate>
-                                    <a class="text-[17px] ms-3 flex items-center gap-x-2 py-2 ps-px font-medium dark:text-white sm:px-3 min-[930px]:ms-6 dark:hover:text-neutral-300" runat="server" href="Account/Login.aspx">
+                                    <a class="text-[17px] whitespace-nowrap	 ms-3 flex items-center gap-x-2 py-2  font-medium dark:text-white  dark:hover:text-neutral-300" runat="server" href="Account/Login.aspx">
                                         Se connecter
                                     </a>
                                 </AnonymousTemplate>
@@ -122,10 +122,45 @@
                                     <asp:LoginStatus runat="server" CssClass="text-[17px] ms-3 flex items-center gap-x-2 py-2 ps-px font-medium dark:text-white sm:px-3 min-[930px]:ms-6 dark:hover:text-neutral-300" LogoutAction="Redirect" LogoutText="Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </LoggedInTemplate>
                             </asp:LoginView>
+
+
+
+
+                             <div class="min-[1425px]:hidden w-full ">
+                                 <input type="checkbox" id="dropdown1" class="hidden peer"/>
+                                 <label for="dropdown1" class="w-fit cursor-pointer block ml-auto">
+                                        <i class="text-white ri-menu-line"></i>
+                                 </label>
+                                  
+                                 <div class="absolute rounded-[15px] p-5 -translate-x-1/2 left-[83%] top-[100%] pb-4  w-[30%] bg-neutral-500 border border-white  peer-checked:flex hidden flex-col">
+                                     <ul class="block font-medium text-black">
+                                         
+                                         <li> <div class="relative  min-[1350px]:hidden">
+                                             <input type="checkbox" id="dropdown_nav1" class="hidden peer"/>
+                                             <label for="dropdown_nav1" class="flex cursor-pointer items-center space-x-1">
+                                                 <span class="whitespace-nowrap	font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300">Relations Fournisseurs</span>
+                                                 <svg class="h-4 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                 </svg>
+                                             </label>
+                                             <div class="absolute z-40 left-10px mt-1 min-w-max rounded border border-gray-400 shadow dark:bg-neutral-500 peer-checked:flex hidden flex-col">
+                                                 <ul class="block font-medium text-black">
+                                                     <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="regelements.aspx">Règlements des marchés</a></li>
+                                                     <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/demarches">Démarches Progrès social​</a></li>
+                                                 </ul>
+                                             </div>
+                                         </div></li>
+
+                                         <li><a class="whitespace-nowrap py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a></li>
+                                         <li><a class="whitespace-nowrap min-[1140px]:hidden py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a></li>
+                                     </ul>
+                                 </div>
+                             </div>
                         </div>
                     </div>
                 </nav>
             </header>
+        <% } %>
         <!-- ========== END HEADER ========== -->
        
         <div class="w-full body-content">
@@ -142,7 +177,7 @@
 
 
      <!-- ========== FOOTER ========== -->
-     <footer class="mt-auto w-full max-w-full py-4 px-4 sm:px-6 lg:px-8 mx-auto dark:bg-neutral-700 dark:border-neutral-700 flex items-center justify-center">
+     <footer class="mt-auto w-full max-w-full py-4 px-4 sm:px-6 lg:px-8 mx-auto dark:bg-neutral-500 dark:border-neutral-700 flex items-center justify-center">
        <!-- Grid -->
        <div>
          <div class="flex items-center">

@@ -17,6 +17,9 @@ namespace amendis2
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        protected bool IsLoginPage;
+
+        
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -71,7 +74,8 @@ namespace amendis2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string currentPage = HttpContext.Current.Request.Url.AbsolutePath.ToLower();
+            IsLoginPage = currentPage.EndsWith("Login") || currentPage.EndsWith("Register");
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
