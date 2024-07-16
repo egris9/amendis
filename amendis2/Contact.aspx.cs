@@ -13,11 +13,25 @@ namespace amendis2
         {
             if (!IsPostBack)
             {
-                // Initialize any data or state here if needed
+                UpdateFieldVisibility();
             }
 
         }
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void RequestTypeDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateFieldVisibility();
+        }
+
+        private void UpdateFieldVisibility()
+        {
+            string selectedValue = RequestTypeDropDown.SelectedValue;
+            bool isAnonymous = selectedValue == "3";
+
+            PanelCompanyName.Visible = !isAnonymous;
+            PanelFullName.Visible = !isAnonymous;
+            PanelPhoneNumber.Visible = !isAnonymous;
+        }
+        protected void SubmitButton_Click(object sender, EventArgs e)
         {
             // Retrieve form values
             string requestType = RequestTypeDropDown.SelectedValue;

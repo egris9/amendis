@@ -3,7 +3,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <main aria-labelledby="title" class="container mx-auto mt-8">
         <div class="md:flex md:justify-center">
-            <div class="rounded-3xl bg-neutral-700 p-10 shadow-md md:w-2/3 lg:w-1/2">
+            <div class="rounded-3xl bg-neutral-500 p-10 shadow-md md:w-2/3 lg:w-1/2">
                 <section id="registerForm">
                     <h2 id="title" class="mb-6 text-center text-3xl font-medium text-white">Registre</h2>
                     <h4 class="mb-4 flex justify-center text-xl font-medium text-white">Créer un nouveau compte</h4>
