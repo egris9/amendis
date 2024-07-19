@@ -8,10 +8,12 @@
               </div>
             </div>
             <br />
-        <div class="max-w-[85%] mx-auto mb-5 flex w-full justify-end">
-            <span class="mr-2 mt-1.5 text-lg font-medium">Chercher:</span>
-             <asp:TextBox ID="SearchTextBox" runat="server" CssClass="rounded border px-5"></asp:TextBox>
-             <asp:Button ID="SearchButton" runat="server" Text="Search" CssClass="ml-2 rounded bg-neutral-500 p-2 text-white" OnClick="SearchButton_Click" />
+        <div class="max-w-[85%] mx-auto mb-5 flex w-full items-center justify-end">
+            <span class="mr-2 mt-1.5 h-10 text-lg font-medium">Chercher:</span>
+             <asp:TextBox ID="SearchTextBox" runat="server" CssClass="h-10 rounded border px-5"></asp:TextBox>
+            <asp:LinkButton ID="SearchButton" runat="server" CssClass="ml-2 flex h-10 items-center self-center rounded bg-neutral-500 p-2 text-white" OnClick="SearchButton_Click">
+                <span class="material-symbols-outlined self-center text-xl">search</span>
+            </asp:LinkButton>
         </div>
         <br />
 
