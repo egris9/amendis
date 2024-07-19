@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,600,0,0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
     #dropdown_test:checked ~ #sortboxmenu {
@@ -50,7 +51,7 @@
        <!-- ========== HEADER ========== -->
          
             <header class="text-[17px] z-50 flex relative w-full flex-wrap md:justify-center md:flex-nowrap">
-    <nav class="rounded-[36px]  mx-2 mt-3 h-16 flex w-[1700px] justify-between bg-neutral-500 px-4 py-6 dark:border-neutral-700 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 ">
+    <nav class="rounded-[20px]  mx-2 mt-3 h-16 flex w-[1700px] justify-between bg-neutral-500 px-4 py-6 dark:border-neutral-700 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 ">
         <div class="flex items-center justify-between  w-full">
             <img class="rounded-xl self-center " src='<%= ResolveUrl("img/logo1.png")%>' />
 
@@ -62,8 +63,8 @@
                 <div class="absolute rounded-[15px] p-5 -translate-x-1/2 left-1/2 top-[110%] pb-36  w-[96%] bg-neutral-500  peer-checked:flex hidden flex-col">
                     <ul class="block font-medium text-white">
                         <li> <a class="whitespace-nowrap py-3 ps-px font-medium  sm:px-3 " runat="server" href="Acceuil.aspx">Acceuil</a></li>
-                        <li> <a class="whitespace-nowrap	py-3  ps-px font-medium sm:px-3 " runat="server" href="~/appels_offres">Avis d'appels d'offres</a></li>
-                        <li> <a class="whitespace-nowrap	py-3 ps-px font-medium  sm:px-3 " runat="server" href="#">Marchés attribués</a></li>
+                        <li> <a class="whitespace-nowrap	py-3  ps-px font-medium sm:px-3 " runat="server" href="AoEncours.aspx">Avis d'appels d'offres</a></li>
+                        <li> <a class="whitespace-nowrap	py-3 ps-px font-medium  sm:px-3 " runat="server" href="Mattribues.aspx">Marchés attribués</a></li>
                         <li> <div class="relative">
                              <input type="checkbox" id="dropdown_nav" class="hidden peer"/>
                              <label for="dropdown_nav" class="flex cursor-pointer items-center space-x-1">
@@ -75,7 +76,7 @@
                              <div class="absolute z-40 left-10px mt-1 min-w-max rounded border border-gray-400 shadow dark:bg-neutral-500 peer-checked:flex hidden flex-col">
                                  <ul class="block font-medium text-white">
                                      <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="regelements.aspx">Règlements des marchés</a></li>
-                                     <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="~/demarches">Démarches Progrès social​</a></li>
+                                     <li><a class="block px-3 py-2 hover:bg-gray-500" runat="server" href="demarches.aspx">Démarches Progrès social​</a></li>
                                  </ul>
                              </div>
                          </div></li>
@@ -92,8 +93,8 @@
         <div id="navbar-collapse-with-animation" class="hidden  justify-center w-full min-[930px]:flex min-[930px]:w-auto min-[930px]:items-center">
             <div class="min-[1424px]:gap-2 min-[1234px]:gap-14 min-[1350px]:gap-10 min-[1550px]:gap-8 min-[1026px]:gap-14 min-[1140px]:gap-10 min-[930px]:gap-10 flex flex-col py-2 min-[930px]:flex-row min-[930px]:items-center min-[930px]:justify-end min-[930px]:py-0 ">
                 <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
-                <a class="whitespace-nowrap	py-3 ps-px w-max font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="~/appels_offres">Avis d'appels d'offres</a>
-                <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="#">Marchés attribués</a>
+                <a class="whitespace-nowrap	py-3 ps-px w-max font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="AoEncours.aspx">Avis d'appels d'offres</a>
+                <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Mattribues.aspx">Marchés attribués</a>
                 <div class="relative hidden min-[1350px]:block">
                     <input type="checkbox" id="dropdown_test" class="hidden peer"/>
                     <label for="dropdown_test" class="flex cursor-pointer items-center space-x-1">
