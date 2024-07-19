@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -55,6 +57,32 @@ namespace amendis2
             Response.Write("<br />N° de Téléphone: " + phoneNumber);
             Response.Write("<br />Email: " + email);
             Response.Write("<br />Message: " + message);
+
+
+            string response = Request["g-recaptcha-response"];
+            string secretKey = "6LdsEBQqAAAAAFEmoBWDDTOilOd7OY7jdwecU1Uq";
+            var client = new WebClient();
+            var result = client.DownloadString($"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={response}");
+            var obj = new JavaScriptSerializer().Deserialize<RecaptchaResponse>(result);
+
+            if (obj.success)
+            {
+                // La validation reCAPTCHA a réussi, procédez avec le traitement du formulaire
+                Response.Write("reCAPTCHA validation successful.");
+            }
+            else
+            {
+                // La validation reCAPTCHA a échoué, affichez un message d'erreur
+                Response.Write("reCAPTCHA validation failed. Please try again.");
+            }
         }
+
     }
+    public class RecaptchaResponse
+    {
+        public bool success { get; set; }
+        public string[] errorCodes { get; set; }
+    }
+
+
 }
