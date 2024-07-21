@@ -6,11 +6,11 @@
             <div class="container mx-auto mb-12 flex flex-col p-4 text-sm sm:text-base 2xl:text-lg">
                 <h2 class="mb-10 flex justify-center text-3xl font-medium lg:text-4xl">Nous Contacter</h2>
                 <div class="mb-6 flex items-center space-x-4">
-                    <label for="requestType" class="font-medium">Type de demande :</label>
+                    <label for="<%= RequestTypeDropDown.ClientID %>" class="font-medium">Type de demande :</label>
                     <asp:DropDownList ID="RequestTypeDropDown" runat="server" CssClass="rounded border border-gray-300 p-1 sm:w-72" AutoPostBack="true" OnSelectedIndexChanged="RequestTypeDropDown_SelectedIndexChanged">
-                        <asp:ListItem Text="Demande d'info" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="Reclamation" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="Reclamation anonyme" Value="3"></asp:ListItem>
+                        <asp:ListItem Text="Demande d'info" Value="Demande d'info"></asp:ListItem>
+                        <asp:ListItem Text="Reclamation" Value="Reclamation"></asp:ListItem>
+                        <asp:ListItem Text="Reclamation anonyme" Value="Reclamation anonyme"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <asp:Panel ID="PanelCompanyName" runat="server">
@@ -19,18 +19,24 @@
                         <asp:TextBox ID="CompanyNameTextBox" runat="server" CssClass="rounded border border-gray-300 p-1 sm:w-72" Placeholder="Nom de la société" />
                     </div>
                 </asp:Panel>
+
+
                 <asp:Panel ID="PanelFullName" runat="server">
                     <div class="mb-6 flex items-center space-x-12">
                         <label for="fullName" class="font-medium">Nom/Prénom :</label>
                         <asp:TextBox ID="FullNameTextBox" runat="server" CssClass="rounded border border-gray-300 p-1 sm:w-72" Placeholder="Nom/Prénom" />
                     </div>
                 </asp:Panel>
+
+
                 <asp:Panel ID="PanelPhoneNumber" runat="server">
                     <div class="mb-6 flex items-center space-x-6">
                         <label for="phoneNumber" class="font-medium">N° de Téléphone :</label>
                         <asp:TextBox ID="PhoneNumberTextBox" runat="server" CssClass="rounded border border-gray-300 p-1 sm:w-72" Placeholder="N° de Téléphone" />
                     </div>
                 </asp:Panel>
+
+
                 <div class="mb-4 flex items-center">
                     <label for="email" class="block font-medium">Email :</label>
                     <asp:TextBox ID="EmailTextBox" runat="server" CssClass="ml-28 rounded border border-gray-300 p-1 sm:ml-28 sm:w-72" Placeholder="Email" />
