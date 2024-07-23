@@ -23,7 +23,7 @@
                 Font-Size="Medium" AutoGenerateColumns="False" DataSourceI="SqlDataSource1"
                 AllowPaging="True" AllowSorting="True" CellPadding="3" PagerSettings-Mode="Numeric"
                 ForeColor="Black" GridLines="Vertical" BackColor="White"  HorizontalAlign="Center"
-                BorderStyle="Solid" BorderWidth="1px" Width="85%" CssClass="gridview-style">
+                BorderStyle="Solid" BorderWidth="1px" Width="85%" CssClass="gridview-style" OnSorting="GridView1_Sorting">
                 <AlternatingRowStyle BackColor="#CCCCCC"></AlternatingRowStyle>
                 <Columns>
                     <asp:BoundField DataField="Site" HeaderText="Site" SortExpression="Site">
@@ -75,9 +75,38 @@
             </asp:GridView>
 
 
-                <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>'  ProviderName='<%$ ConnectionStrings:DefaultConnection.ProviderName %>' >
+                <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>'  ProviderName='<%$ ConnectionStrings:DefaultConnection.ProviderName %>' SelectCommand="SET DATEFORMAT DMY; SELECT 
+    Numero_Ao,
+    Designa,
+    Date_lan,
+    Date_rec,
+    Date_rem,
+    Date_ouv_adm,
+    Date_ouv_fin,
+    Type,
+    Nature,
+    Type_projet,
+    Seance_ouv,
+    Direction,
+    Res_projet,
+    Site,
+    Financement,
+    Mode_lan,
+    Statut,
+    Frais_dos,
+    Numero_lot,
+    Libelle,
+    Impu_bud,
+    Montant_bud,
+    Montant_est,
+    Observation,
+    DATEDIFF(d, Date_rec, GETDATE()) AS Nbr_jour,
+    Date_rep1,
+    Date_rep2
+FROM v_ao_aoo;
+" >
                     <SelectParameters>
-                        <asp:Parameter DefaultValue="FD" Name="Financement" Type="String"></asp:Parameter>
+                        <asp:Parameter DefaultValue="FD" Name="SearchTerm" Type="String"></asp:Parameter>
                     </SelectParameters>
                 </asp:SqlDataSource>
             </main>
