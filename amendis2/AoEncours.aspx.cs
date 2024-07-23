@@ -10,35 +10,84 @@ namespace amendis2
 {
     public partial class AoEncours : System.Web.UI.Page
     {
+        private string SortDirection
+        {
+            get { return ViewState["SortDirection"] as string ?? "ASC"; }
+            set { ViewState["SortDirection"] = value; }
+        }
+
+        private string SortExpression
+        {
+            get { return ViewState["SortExpression"] as string ?? string.Empty; }
+            set { ViewState["SortExpression"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-
-            // Ajouter les colonnes à la DataTable
-            dt.Columns.Add(new DataColumn("ID", typeof(int)));
-            dt.Columns.Add(new DataColumn("Site", typeof(string)));
-            dt.Columns.Add(new DataColumn("Numero_Ao", typeof(string)));
-            dt.Columns.Add(new DataColumn("Designa", typeof(string)));
-            dt.Columns.Add(new DataColumn("Date_lan", typeof(DateTime)));
-            dt.Columns.Add(new DataColumn("Date_rem", typeof(DateTime)));
-            dt.Columns.Add(new DataColumn("Date_ouv_adm", typeof(DateTime)));
-            dt.Columns.Add(new DataColumn("Seance_ouv", typeof(string)));
-            dt.Columns.Add(new DataColumn("Montant_est", typeof(decimal)));
-
-            // Ajouter des lignes de données à la DataTable (exemples)
-            dt.Rows.Add(1, "Site A", "AO001", "Description 1", DateTime.Now, DateTime.Now, DateTime.Now, "Morning", 1000.50);
-            dt.Rows.Add(2, "Site B", "AO002", "Description 2", DateTime.Now, DateTime.Now, DateTime.Now, "Afternoon", 1500.75);
-
-            // Assigner la DataTable comme source de données pour le GridView
-            GridView1.DataSource = dt;
-            GridView1.DataBind(); // Obligatoire pour lier les données au GridView
+            if (!IsPostBack)
+            {
+                BindGrid();
+            }
         }
         protected void SearchButton_Click(object sender, EventArgs e)
         {
-            // Set the SelectParameter for the search term
-            SqlDataSource1.SelectParameters["SearchTerm"].DefaultValue = SearchTextBox.Text.Trim();
-            // Rebind the GridView to apply the search filter
+            string searchTerm = SearchTextBox.Text.Trim();
+
+            // Define the base query with parameters
+            SqlDataSource1.SelectCommand = $@"SET DATEFORMAT DMY;
+            SELECT Numero_Ao, Designa, Date_lan, Date_rec, Date_rem, Date_ouv_adm, Date_ouv_fin, 
+                   Type, Nature, Type_projet, Seance_ouv, Direction, Res_projet, Site, 
+                   Financement, Mode_lan, Statut, Frais_dos, Numero_lot, Libelle, 
+                   Impu_bud, Montant_bud, Montant_est, Observation, 
+                   DATEDIFF(d, Date_rec, GETDATE()) AS Nbr_jour, Date_rep1, Date_rep2 
+            FROM v_ao_aoo 
+            WHERE Designa LIKE @SearchTerm OR Site LIKE @SearchTerm";
+
+
+
+            // Add parameter to SqlDataSource
+            SqlDataSource1.SelectParameters.Clear();
+            SqlDataSource1.SelectParameters.Add("SearchTerm", $"%{searchTerm}%");
+
+            // Rebind the GridView to update the data
+            BindGrid();
+        }
+        private void BindGrid()
+        {
+            SqlDataSource1.SelectCommand = $@"SET DATEFORMAT DMY; 
+            SELECT Numero_Ao, Designa, Date_lan, Date_rec, Date_rem, Date_ouv_adm, Date_ouv_fin, 
+                   Type, Nature, Type_projet, Seance_ouv, Direction, Res_projet, Site, 
+                   Financement, Mode_lan, Statut, Frais_dos, Numero_lot, Libelle, 
+                   Impu_bud, Montant_bud, Montant_est, Observation, 
+                   DATEDIFF(d, Date_rec, GETDATE()) AS Nbr_jour, Date_rep1, Date_rep2 
+            FROM v_ao_aoo 
+            WHERE Designa LIKE @SearchTerm OR Site LIKE @SearchTerm";
+
+            SqlDataSource1.SelectParameters.Clear();
+            SqlDataSource1.SelectParameters.Add("SearchTerm", $"%{SearchTextBox.Text.Trim()}%");
+            if (!string.IsNullOrEmpty(SortExpression))
+            {
+                SqlDataSource1.SelectCommand += $" ORDER BY {SortExpression} {SortDirection}";
+            }
+            GridView1.DataSource = SqlDataSource1;
             GridView1.DataBind();
+        }
+
+
+        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            // Update the sort expression and direction
+            if (SortExpression == e.SortExpression)
+            {
+                SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
+            }
+            else
+            {
+                SortExpression = e.SortExpression;
+                SortDirection = "ASC";
+            }
+
+            // Rebind the GridView with the updated sort order
+            BindGrid();
         }
 
     }
