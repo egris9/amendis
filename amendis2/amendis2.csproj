@@ -179,7 +179,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="Admin\Dashb.aspx" />
+    <Content Include="Admin\AdminInput.aspx" />
     <Content Include="AoEncours.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
@@ -351,12 +351,12 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Dashb.aspx.cs">
-      <DependentUpon>Dashb.aspx</DependentUpon>
+    <Compile Include="Admin\AdminInput.aspx.cs">
+      <DependentUpon>AdminInput.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Dashb.aspx.designer.cs">
-      <DependentUpon>Dashb.aspx</DependentUpon>
+    <Compile Include="Admin\AdminInput.aspx.designer.cs">
+      <DependentUpon>AdminInput.aspx</DependentUpon>
     </Compile>
     <Compile Include="AoEncours.aspx.cs">
       <DependentUpon>AoEncours.aspx</DependentUpon>
