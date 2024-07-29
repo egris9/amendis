@@ -23,8 +23,10 @@
                 Font-Size="Medium" AutoGenerateColumns="False" DataSourceI="SqlDataSource1"
                 AllowPaging="True" PageSize="3" AllowSorting="True" CellPadding="3"
                 ForeColor="Black" GridLines="Vertical" BackColor="White"  HorizontalAlign="Center"
+
                 BorderStyle="Solid" BorderWidth="1px" Width="85%" CssClass="gridview-style" OnSorting="GridView1_Sorting" OnPageIndexChanging="GridView1_PageIndexChanging">
                 <PagerSettings Mode="Numeric" PageButtonCount="10" Position="Bottom" />
+
                 <AlternatingRowStyle BackColor="#CCCCCC"></AlternatingRowStyle>
                 <Columns>
                     <asp:BoundField DataField="Site" HeaderText="Site" SortExpression="Site">
