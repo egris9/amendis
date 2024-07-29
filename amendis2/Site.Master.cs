@@ -72,6 +72,14 @@ namespace amendis2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+            {
+                hlAdminLink.Visible = true;
+            }
+            else
+            {
+                hlAdminLink.Visible = false;
+            }
 
         }
 

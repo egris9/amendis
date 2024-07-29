@@ -21,9 +21,12 @@
 
          <asp:GridView ID="GridView1" runat="server" Visible="true" EnableViewState="true"
                 Font-Size="Medium" AutoGenerateColumns="False" DataSourceI="SqlDataSource1"
-                AllowPaging="True" AllowSorting="True" CellPadding="3" PagerSettings-Mode="Numeric"
+                AllowPaging="True" PageSize="3" AllowSorting="True" CellPadding="3"
                 ForeColor="Black" GridLines="Vertical" BackColor="White"  HorizontalAlign="Center"
-                BorderStyle="Solid" BorderWidth="1px" Width="85%" CssClass="gridview-style" OnSorting="GridView1_Sorting">
+
+                BorderStyle="Solid" BorderWidth="1px" Width="85%" CssClass="gridview-style" OnSorting="GridView1_Sorting" OnPageIndexChanging="GridView1_PageIndexChanging">
+                <PagerSettings Mode="Numeric" PageButtonCount="10" Position="Bottom" />
+
                 <AlternatingRowStyle BackColor="#CCCCCC"></AlternatingRowStyle>
                 <Columns>
                     <asp:BoundField DataField="Site" HeaderText="Site" SortExpression="Site">
@@ -66,7 +69,7 @@
 
                 <FooterStyle BackColor="#CCCCCC"></FooterStyle>
                 <HeaderStyle BackColor="#808080" Font-Bold="True" ForeColor="White"></HeaderStyle>
-                <PagerStyle HorizontalAlign="Center" BackColor="#999999" ForeColor="Black"></PagerStyle>
+                <PagerStyle HorizontalAlign="Center" BackColor="#808080" ForeColor="White"></PagerStyle>
                 <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White"></SelectedRowStyle>
                 <SortedAscendingCellStyle BackColor="#F1F1F1"></SortedAscendingCellStyle>
                 <SortedAscendingHeaderStyle BackColor="#808080"></SortedAscendingHeaderStyle>

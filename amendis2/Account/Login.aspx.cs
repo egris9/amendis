@@ -57,19 +57,7 @@ namespace amendis2.Account
                         break;
                 }
             }
-            string username = UsernameOrEmail.Text;
-            string password = Password.Text;
-
-            // Replace with your user validation logic
-            if (username == "admin" && password == "password")
-            {
-                // Redirect to dashboard.aspx upon successful login
-                Response.Redirect("~/Admin/Dashboard.aspx");
-            }
-            else
-            {
-                FailureText.Text = "Invalid username or password.";
-            }
+           
 
         }
     }

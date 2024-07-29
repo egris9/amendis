@@ -14,6 +14,8 @@ using FluentEmail.Smtp;
 using FluentEmail.Core.Interfaces;
 using Microsoft.Ajax.Utilities;
 
+
+
 namespace amendis2
 {
     public partial class Contact : Page
@@ -54,7 +56,7 @@ namespace amendis2
                 if (!obj.success)
                 {
                     // reCAPTCHA validation failed
-                    Response.Write("reCAPTCHA validation failed. Please try again.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('reCAPTCHA validation failed. Please try again.');", true);
                     return; // Stop further processing
                 }
 
@@ -98,7 +100,7 @@ namespace amendis2
             catch (Exception ex)
             {
                 // Handle any errors
-                Response.Write($"<script>alert('Erreur lors de l'envoi du message: {ex.Message}');</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Erreur lors de l\'envoi du message: {ex.Message}');", true);
             }
         }
     }
