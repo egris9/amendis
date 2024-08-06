@@ -26,6 +26,18 @@ namespace amendis2
             if (!IsPostBack)
             {
                 BindGrid();
+
+                bool isAdmin = CheckIfUserIsAdmin();
+
+                // Find the ActionTemplateField and set its visibility
+                foreach (DataControlField column in GridView1.Columns)
+                {
+                    if (column is TemplateField templateField && column.HeaderText == "Ajouter")
+                    {
+                        templateField.Visible = isAdmin;
+                        break;
+                    }
+                }
             }
         }
         protected void SearchButton_Click(object sender, EventArgs e)
@@ -33,13 +45,7 @@ namespace amendis2
             string searchTerm = SearchTextBox.Text.Trim();
 
             // Define the base query with parameters
-            SqlDataSource1.SelectCommand = $@"SET DATEFORMAT DMY;
-            SELECT Numero_Ao, Designa, Date_lan, Date_rec, Date_rem, Date_ouv_adm, Date_ouv_fin, 
-                   Type, Nature, Type_projet, Seance_ouv, Direction, Res_projet, Site, 
-                   Financement, Mode_lan, Statut, Frais_dos, Numero_lot, Libelle, 
-                   Impu_bud, Montant_bud, Montant_est, Observation, 
-                   DATEDIFF(d, Date_rec, GETDATE()) AS Nbr_jour, Date_rep1, Date_rep2 
-            FROM v_ao_aoo 
+            SqlDataSource1.SelectCommand = $@"SET DATEFORMAT DMY; SELECT Numero_Ao,Designa,Date_lan,Date_rec,Date_rem,Date_ouv_adm,Date_ouv_fin,Type,Nature,Type_projet,Direction,Res_projet,Site,Financement,Mode_lan,Statut,Frais_dos,Numero_lot,Libelle,Impu_bud,Montant_bud,Montant_est,Observation,DATEDIFF(d,date_rec,getdate()) as Nbr_jour,Seance_ouv,Date_rep1, Date_rep2 FROM V_AO_AO 
             WHERE Designa LIKE @SearchTerm OR Site LIKE @SearchTerm";
 
 
@@ -53,13 +59,7 @@ namespace amendis2
         }
         private void BindGrid()
         {
-            SqlDataSource1.SelectCommand = $@"SET DATEFORMAT DMY; 
-            SELECT Numero_Ao, Designa, Date_lan, Date_rec, Date_rem, Date_ouv_adm, Date_ouv_fin, 
-                   Type, Nature, Type_projet, Seance_ouv, Direction, Res_projet, Site, 
-                   Financement, Mode_lan, Statut, Frais_dos, Numero_lot, Libelle, 
-                   Impu_bud, Montant_bud, Montant_est, Observation, 
-                   DATEDIFF(d, Date_rec, GETDATE()) AS Nbr_jour, Date_rep1, Date_rep2 
-            FROM v_ao_aoo 
+            SqlDataSource1.SelectCommand = $@"SET DATEFORMAT DMY; SELECT Numero_Ao,Designa,Date_lan,Date_rec,Date_rem,Date_ouv_adm,Date_ouv_fin,Type,Nature,Type_projet,Direction,Res_projet,Site,Financement,Mode_lan,Statut,Frais_dos,Numero_lot,Libelle,Impu_bud,Montant_bud,Montant_est,Observation,DATEDIFF(d,date_rec,getdate()) as Nbr_jour,Seance_ouv,Date_rep1, Date_rep2 FROM V_AO_AO
             WHERE Designa LIKE @SearchTerm OR Site LIKE @SearchTerm";
 
             SqlDataSource1.SelectParameters.Clear();
@@ -97,5 +97,34 @@ namespace amendis2
             BindGrid();
         }
 
+        private bool CheckIfUserIsAdmin()
+        {
+            // Implement your logic to check if the user is an admin
+            // For example, checking user roles or permissions
+            return User.IsInRole("admin");
+        }
+
+        protected void GridView1_DataBound(object sender, EventArgs e)
+        {
+            bool isAdmin = CheckIfUserIsAdmin();
+
+            // Find the TemplateField column and set its visibility
+            foreach (DataControlField column in GridView1.Columns)
+            {
+                if (column is TemplateField templateField && column.HeaderText == "Ajouter")
+                {
+                    templateField.Visible = isAdmin;
+                    break;
+                }
+            }
+        }
+
+        protected void LinkButtonAdd_Click(object sender, EventArgs e)
+        {
+            LinkButton linkButton = (LinkButton)sender;
+            string numeroAo = linkButton.CommandArgument;
+            string url = $"~/Admin/AdminInput.aspx?Numero_Ao={numeroAo}";
+            Response.Redirect(url);
+        }
     }
 }

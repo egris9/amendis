@@ -10,58 +10,64 @@ namespace amendis2
 {
     public partial class Mattribues : System.Web.UI.Page
     {
+        private string SortDirection
+        {
+            get { return ViewState["SortDirection"] as string ?? "ASC"; }
+            set { ViewState["SortDirection"] = value; }
+        }
+
+        private string SortExpression
+        {
+            get { return ViewState["SortExpression"] as string ?? string.Empty; }
+            set { ViewState["SortExpression"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Créer une DataTable
-                DataTable dt = new DataTable();
-
-                // Ajouter les colonnes à la DataTable
-                dt.Columns.Add(new DataColumn("Site", typeof(string)));
-                dt.Columns.Add(new DataColumn("Numero_Ao", typeof(string)));
-                dt.Columns.Add(new DataColumn("Designa", typeof(string)));
-                dt.Columns.Add(new DataColumn("Date_lan", typeof(DateTime)));
-                dt.Columns.Add(new DataColumn("Ouvertur_fin", typeof(DateTime)));
-                dt.Columns.Add(new DataColumn("Montant_dhht", typeof(DateTime)));
-                dt.Columns.Add(new DataColumn("Attributaire", typeof(string)));
-                dt.Columns.Add(new DataColumn("Detail", typeof(string)));
-
-                // Exemple de données
-                DataRow dr1 = dt.NewRow();
-                dr1["Site"] = "Site A";
-                dr1["Numero_Ao"] = "AO-001";
-                dr1["Designa"] = "Désignation 1";
-                dr1["Date_lan"] = new DateTime(2024, 7, 15);
-                dr1["Ouvertur_fin"] = new DateTime(2024, 7, 20);
-                dr1["Montant_dhht"] = new DateTime(2024, 7, 25);
-                dr1["Attributaire"] = "Attribué 1";
-                dr1["Detail"] = "Détail 1";
-                dt.Rows.Add(dr1);
-
-                DataRow dr2 = dt.NewRow();
-                dr2["Site"] = "Site B";
-                dr2["Numero_Ao"] = "AO-002";
-                dr2["Designa"] = "Désignation 2";
-                dr2["Date_lan"] = new DateTime(2024, 7, 16);
-                dr2["Ouvertur_fin"] = new DateTime(2024, 7, 21);
-                dr2["Montant_dhht"] = new DateTime(2024, 7, 26);
-                dr2["Attributaire"] = "Attribué 2";
-                dr2["Detail"] = "Détail 2";
-                dt.Rows.Add(dr2);
-
-                // Lier la DataTable au GridView
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
+                BindGrid();
             }
-
         }
         protected void SearchButton_Clicks(object sender, EventArgs e)
         {
-            // Set the SelectParameter for the search term
-            SqlDataSource1.SelectParameters["SearchTerm"].DefaultValue = SearchTextBox.Text.Trim();
-            // Rebind the GridView to apply the search filter
+            BindGrid();
+        }
+        private void BindGrid()
+        {
+            SqlDataSource1.SelectCommand = $@"SET DATEFORMAT DMY; select Site,Type='Marché',Type as Type_ao,Direction,Type_projet,Numero_Mar, Numero_ao,Numero_lot,Numero_cde_ouv, upper(Designa) as Designa, upper(Libelle) as Libelle,Date_rec,Date_lan,Date_rem,Date_ouv_adm,Date_ouv_fin,Date_rep1,Date_rep2,Date_env_fou,Date_ret_fou,Date_Adj, Date_Not,Date_av_rec =null,Nom as Adjudicataire,Montant,Montant_min,Montant_max,Date_ord_ser,Duree,Montant_cau,Date_rec_pro,Date_rec_def,Date_res_cau,Estim_dac,Financement,Famille,Res_projet,Nature,Mode_lan,Delai,Observation,Montant_n,Montant_n1,Montant_n2,Montant_n3,isnull(Montant_n,0)+isnull(Montant_n1,0)+isnull(Montant_n2,0)+isnull(Montant_n3,0) as Conso from V_AO_Marche
+            WHERE Designa LIKE @SearchTerm OR Site LIKE @SearchTerm";
+
+            SqlDataSource1.SelectParameters.Clear();
+            SqlDataSource1.SelectParameters.Add("SearchTerm", $"%{SearchTextBox.Text.Trim()}%");
+
+            if (!string.IsNullOrEmpty(SortExpression))
+            {
+                SqlDataSource1.SelectCommand += $" ORDER BY {SortExpression} {SortDirection}";
+            }
+
+            GridView1.DataSource = SqlDataSource1;
             GridView1.DataBind();
+        }
+        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            // Update the sort expression and direction
+            if (SortExpression == e.SortExpression)
+            {
+                SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
+            }
+            else
+            {
+                SortExpression = e.SortExpression;
+                SortDirection = "ASC";
+            }
+
+            // Rebind the GridView with the updated sort order
+            BindGrid();
+        }
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindGrid();
         }
 
     }
