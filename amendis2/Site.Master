@@ -50,7 +50,7 @@
 
        <!-- ========== HEADER ========== -->
          
-            <header class="text-[17px] z-50 flex relative w-full flex-wrap md:justify-center md:flex-nowrap">
+<header class="text-[17px] z-50 flex relative w-full flex-wrap md:justify-center md:flex-nowrap">
     <nav class="rounded-[20px]  mx-2 mt-3 h-16 flex w-[1700px] justify-between bg-neutral-500 px-4 py-6 dark:border-neutral-700 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 ">
         <div class="flex items-center justify-between  w-full">
             <img class="rounded-xl self-center " src='<%= ResolveUrl("img/logo1.png")%>' />

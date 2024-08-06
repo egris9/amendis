@@ -43,39 +43,94 @@ namespace amendis2.Admin
             }
 
             // Validate PDF file upload
-            if (!PdfFileUpload.HasFile || PdfFileUpload.PostedFile.ContentType != "application/pdf")
+            if (PdfFileUpload.HasFiles)
             {
-                MessageLabel.Text = "Please upload a valid PDF file.";
+                bool allFilesValid = true;
+                foreach (HttpPostedFile uploadedFile in PdfFileUpload.PostedFiles)
+                {
+                    if (uploadedFile.ContentType != "application/pdf")
+                    {
+                        allFilesValid = false;
+                        break;
+                    }
+                }
+
+                if (!allFilesValid)
+                {
+                    MessageLabel.Text = "Please upload only PDF files.";
+                    MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
+                    MessageLabel.Visible = true;
+                    return; // Exit if validation fails
+                }
+
+                try
+                {
+                    // Save the uploaded files
+                    string uploadsFolder = Server.MapPath("~/Uploads");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    foreach (HttpPostedFile uploadedFile in PdfFileUpload.PostedFiles)
+                    {
+                        string fileName = Path.GetFileName(uploadedFile.FileName);
+                        string filePath = Path.Combine(uploadsFolder, fileName);
+                        if (FileExistsInDatabase(numeroAo, fileName))
+                        {
+                            MessageLabel.Text = "The file already exists for this Numero_Ao.";
+                            MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
+                            MessageLabel.Visible = true;
+                            return; // Exit if the file already exists
+                        }
+                        uploadedFile.SaveAs(filePath);
+
+                        // Save details to the database for each file
+                        SaveDetailsToDatabase(numeroAo, designation, fileName);
+                    }
+
+                    MessageLabel.Text = "Details and files uploaded successfully.";
+                    MessageLabel.CssClass = "mt-4 block text-lg font-medium text-green-600";
+                    MessageLabel.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageLabel.Text = "An error occurred: " + ex.Message;
+                    MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
+                    MessageLabel.Visible = true;
+                }
+            }
+            else
+            {
+                MessageLabel.Text = "Please upload at least one PDF file.";
                 MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
                 MessageLabel.Visible = true;
-                return; // Exit if validation fails
             }
+        }
+        private bool FileExistsInDatabase(string numeroAo, string fileName)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string query = "SELECT COUNT(*) FROM AdminUploads WHERE Numero_Ao = @NumeroAo AND FileName = @FileName";
 
             try
             {
-                // Save the uploaded file
-                string uploadsFolder = Server.MapPath("~/Admin/Uploads/");
-                if (!Directory.Exists(uploadsFolder))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    Directory.CreateDirectory(uploadsFolder);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@NumeroAo", numeroAo);
+                        command.Parameters.AddWithValue("@FileName", fileName);
+
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+                        return count > 0;
+                    }
                 }
-
-                string fileName = Path.GetFileName(PdfFileUpload.PostedFile.FileName);
-                string filePath = Path.Combine(uploadsFolder, fileName);
-                PdfFileUpload.SaveAs(filePath);
-
-                // Save details to the database
-                SaveDetailsToDatabase(numeroAo, designation, fileName);
-
-                MessageLabel.Text = "Details and file uploaded successfully.";
-                MessageLabel.CssClass = "mt-4 block text-lg font-medium text-green-600";
-                MessageLabel.Visible = true;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageLabel.Text = "An error occurred: " + ex.Message;
-                MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
-                MessageLabel.Visible = true;
+                // Handle SQL exception or log it as needed
+                throw new ApplicationException("An error occurred while checking file existence in the database.", ex);
             }
         }
 
@@ -111,5 +166,6 @@ namespace amendis2.Admin
                 throw new ApplicationException("An unexpected error occurred.", ex);
             }
         }
+
     }
 }

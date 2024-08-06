@@ -183,6 +183,7 @@
     <Content Include="AoEncours.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
+    <Content Include="Data.aspx" />
     <Content Include="demarches.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -375,6 +376,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Data.aspx.cs">
+      <DependentUpon>Data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Data.aspx.designer.cs">
+      <DependentUpon>Data.aspx</DependentUpon>
     </Compile>
     <Compile Include="demarches.aspx.cs">
       <DependentUpon>demarches.aspx</DependentUpon>
