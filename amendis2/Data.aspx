@@ -17,18 +17,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="p-4">
-                            <asp:Label ID="NumeroAoLabel" runat="server" CssClass="ml-56 h-10 text-xl"></asp:Label>
+                    <tr >
+                        <td class="p-4 text-center">
+                            <asp:Label ID="NumeroAoLabel" runat="server" CssClass="h-10 text-xl"></asp:Label>
                         </td>
                         <td class="p-10 text-center">
                             <asp:Label ID="DesignationLabel" runat="server" CssClass="h-10 text-xl"></asp:Label>
                         </td>
-                        <td class="p-4">
+                        <td class="p-4 text-center">
                             <asp:Repeater ID="PdfRepeater" runat="server">
                                 <ItemTemplate>
                                     <div class="mb-2">
-                                        <asp:HyperLink ID="PdfFileLink" runat="server" Text='<%# Eval("FileName") %>' NavigateUrl='<%# Eval("FileName", "~/Uploads/{0}") %>' Target="_blank" CssClass="hover:text-blue-500 ml-40"></asp:HyperLink>
+                                        <asp:HyperLink ID="PdfFileLink" runat="server" Text='<%# Eval("FileName") %>' NavigateUrl='<%# Eval("FileName", "~/Uploads/{0}") %>' Target="_blank" CssClass="hover:text-blue-500 "></asp:HyperLink>
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
