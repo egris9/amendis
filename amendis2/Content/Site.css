@@ -25,6 +25,37 @@
     --tw-content: '';
 }
 
+
+.pager-style a {
+    margin: 10px; /* Adjust the spacing as needed */
+    color: white;
+    background-color: #808080;
+    transition: background-color 0.4s ease;
+    padding: 3px;
+    text-decoration: none;
+    display: flex;
+}
+
+    .pager-style a:hover {
+        background-color: #666666; /* Optional: Change color on hover */
+    }
+    .pager-style a:active {
+        background-color: #666666; /* Optional: Change color on active */
+    }
+
+.pager-style span {
+    background-color: #666666; /* Change this color as needed for the active page */
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+    padding: 3px;
+    display: inline-block;
+}
+
+
+
+
+
 /*
 1. Use a consistent sensible line-height in all browsers.
 2. Prevent adjustments of font size after orientation changes in iOS.
