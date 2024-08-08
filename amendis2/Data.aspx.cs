@@ -50,16 +50,16 @@ namespace amendis2
                                 DataRow firstRow = dataTable.Rows[0];
                                 NumeroAoLabel.Text = firstRow["Numero_Ao"].ToString();
                                 DesignationLabel.Text = firstRow["Designation"].ToString();
-                                PdfGridView.DataSource = dataTable;
-                                PdfGridView.DataBind();
+                                PdfRepeater.DataSource = dataTable;
+                                PdfRepeater.DataBind();
                             }
                             else
                             {
                                 // Handle the case where no records are found
                                 NumeroAoLabel.Text = "Pas d'information pour le moment";
                                 DesignationLabel.Text = "Pas d'information pour le moment";
-                                PdfGridView.DataSource = null;
-                                PdfGridView.DataBind();
+                                PdfRepeater.DataSource = null;
+                                PdfRepeater.DataBind();
                             }
                         }
                     }
