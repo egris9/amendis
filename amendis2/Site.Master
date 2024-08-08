@@ -95,6 +95,7 @@
         <div id="navbar-collapse-with-animation" class="hidden  justify-center w-full min-[930px]:flex min-[930px]:w-auto min-[930px]:items-center">
             <div class="min-[1424px]:gap-2 min-[1234px]:gap-14 min-[1350px]:gap-10 min-[1550px]:gap-8 min-[1026px]:gap-14 min-[1140px]:gap-10 min-[930px]:gap-10 flex flex-col py-2 min-[930px]:flex-row min-[930px]:items-center min-[930px]:justify-end min-[930px]:py-0 ">
 
+
                 <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
                 <a class="whitespace-nowrap	py-3 ps-px w-max font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="AoEncours.aspx">Avis d'appels d'offres</a>
                 <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Mattribues.aspx">Marchés attribués</a>
@@ -102,6 +103,7 @@
                 <div class="relative group hidden py-5 h-full min-[1350px]:block">
                     
                     <button for="dropdown_test" type="button" class=" flex cursor-pointer items-center peer space-x-1">
+
                         <span class="whitespace-nowrap	font-medium text-white sm:px-3 hover:text-dark">Relations Fournisseurs</span>
                         <svg class="h-4 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

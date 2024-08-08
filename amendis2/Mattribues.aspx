@@ -59,7 +59,7 @@
 
            <FooterStyle BackColor="#CCCCCC"></FooterStyle>
             <HeaderStyle BackColor="#808080" Font-Bold="True" ForeColor="White"></HeaderStyle>
-            <PagerStyle HorizontalAlign="Center" BackColor="#808080" ForeColor="White"></PagerStyle>
+            <PagerStyle HorizontalAlign="Center" CssClass="pager-style" BackColor="#808080" ForeColor="White"></PagerStyle>
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White"></SelectedRowStyle>
             <SortedAscendingCellStyle BackColor="#F1F1F1"></SortedAscendingCellStyle>
             <SortedAscendingHeaderStyle BackColor="#808080"></SortedAscendingHeaderStyle>
