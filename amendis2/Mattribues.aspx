@@ -2,16 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main>
   
-        <div class="mb-5 ml-36 mt-8 flex">
+        <div class="mb-3 ml-36 mt-14 flex">
           <div>
-            <h2 class="text-3xl font-medium">Marchés attribués</h2>
+            <h2 class="text-4xl font-medium">Marchés attribués</h2>
           </div>
         </div>
         <br />
          
 
 
-         <div class="max-w-[85%] mx-auto mb-5 flex w-full items-center justify-end">
+         <div class="max-w-[85%] mx-auto mb-3 flex w-full items-center justify-end">
              <span class="mr-2 mt-1.5 h-10 text-lg font-medium">Chercher:</span>
              <asp:TextBox ID="SearchTextBox" runat="server" CssClass="h-10 rounded border px-5"></asp:TextBox>
              <asp:LinkButton ID="SearchButton1" runat="server" CssClass="ml-2 flex h-10 items-center self-center rounded bg-neutral-500 p-2 text-white" OnClick="SearchButton_Clicks">
