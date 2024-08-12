@@ -15,22 +15,40 @@ namespace amendis2.Admin
     {
 
         /// <summary>
-        /// NumeroAoTextBox control.
+        /// NumeroAoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NumeroAoTextBox;
+        protected global::System.Web.UI.WebControls.Label NumeroAoLabel;
 
         /// <summary>
-        /// DesignationTextBox control.
+        /// DesignationLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DesignationTextBox;
+        protected global::System.Web.UI.WebControls.Label DesignationLabel;
+
+        /// <summary>
+        /// pdfTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable pdfTable;
+
+        /// <summary>
+        /// LibelleTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LibelleTextBox;
 
         /// <summary>
         /// PdfFileUpload control.
@@ -40,6 +58,15 @@ namespace amendis2.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload PdfFileUpload;
+
+        /// <summary>
+        /// AddRowButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddRowButton;
 
         /// <summary>
         /// SubmitButton control.
