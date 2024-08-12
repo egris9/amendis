@@ -46,102 +46,81 @@ namespace amendis2.Admin
         protected void SubmitButton_Click(object sender, EventArgs e)
         {
             string numeroAo = NumeroAoLabel.Text;
-            string designation = DesignationLabel.Text;
 
-            if (pdfTable.Rows.Count > 0)
+            // Ensure that the PDF upload controls are present on the page
+            var libelleTextBox = LibelleTextBox;
+            var fileUpload = PdfFileUpload;
+
+            if (libelleTextBox != null && fileUpload != null)
             {
-                foreach (TableRow row in pdfTable.Rows)
+                string libelle = libelleTextBox.Text.Trim();
+                string fileName = Path.GetFileName(fileUpload.PostedFile.FileName); // Get the file name only
+
+                if (fileUpload.HasFile)
                 {
-                    var libelleTextBox = (TextBox)row.FindControl("LibelleTextBox");
-                    var fileUpload = (FileUpload)row.FindControl("PdfFileUpload");
-
-                    if (libelleTextBox != null && fileUpload != null)
+                    // Validate file type
+                    if (fileUpload.PostedFile.ContentType != "application/pdf")
                     {
-                        string fileName = Path.GetFileName(fileUpload.PostedFile.FileName);
-                        if (fileUpload.HasFile)
+                        MessageLabel.Text = "Please upload only PDF files.";
+                        MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
+                        MessageLabel.Visible = true;
+                        return;
+                    }
+
+                    // Check if the file already exists in the database
+                    if (FileExistsInDatabase(numeroAo, fileName))
+                    {
+                        MessageLabel.Text = "The file already exists for this Numero_Ao.";
+                        MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
+                        MessageLabel.Visible = true;
+                        return;
+                    }
+
+                    try
+                    {
+                        // Save the uploaded file
+                        string uploadsFolder = Server.MapPath("~/Uploads");
+                        if (!Directory.Exists(uploadsFolder))
                         {
-                            if (fileUpload.PostedFile.ContentType != "application/pdf")
-                            {
-                                MessageLabel.Text = "Please upload only PDF files.";
-                                MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
-                                MessageLabel.Visible = true;
-                                return;
-                            }
-
-                            if (FileExistsInDatabase(numeroAo, fileName))
-                            {
-                                MessageLabel.Text = "The file already exists for this Numero_Ao.";
-                                MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
-                                MessageLabel.Visible = true;
-                                return;
-                            }
-
-                            try
-                            {
-                                string uploadsFolder = Server.MapPath("~/Uploads");
-                                if (!Directory.Exists(uploadsFolder))
-                                {
-                                    Directory.CreateDirectory(uploadsFolder);
-                                }
-
-                                string filePath = Path.Combine(uploadsFolder, fileName);
-                                fileUpload.SaveAs(filePath);
-                                SaveDetailsToDatabase(numeroAo, libelleTextBox.Text, fileName);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageLabel.Text = "An error occurred: " + ex.Message;
-                                MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
-                                MessageLabel.Visible = true;
-                                return;
-                            }
+                            Directory.CreateDirectory(uploadsFolder);
                         }
+
+                        string filePath = Path.Combine(uploadsFolder, fileName);
+                        fileUpload.SaveAs(filePath);
+
+                        // Save file details to the database
+                        SaveDetailsToDatabase(numeroAo, libelle, fileName);
+
+                        // Provide feedback to the user
+                        MessageLabel.Text = "File uploaded successfully.";
+                        MessageLabel.CssClass = "mt-4 block text-lg font-medium text-green-600";
+                        MessageLabel.Visible = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle errors during file save or database update
+                        MessageLabel.Text = "An error occurred: " + ex.Message;
+                        MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
+                        MessageLabel.Visible = true;
                     }
                 }
-
-                MessageLabel.Text = "Details and files uploaded successfully.";
-                MessageLabel.CssClass = "mt-4 block text-lg font-medium text-green-600";
-                MessageLabel.Visible = true;
+                else
+                {
+                    MessageLabel.Text = "Please select a file.";
+                    MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
+                    MessageLabel.Visible = true;
+                }
             }
             else
             {
-                MessageLabel.Text = "Please upload at least one PDF file.";
+                MessageLabel.Text = "Please enter a libelle and upload a file.";
                 MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
                 MessageLabel.Visible = true;
             }
         }
-        protected void AddRowButton_Click(object sender, EventArgs e)
-        {
-            HtmlTableRow newRow = new HtmlTableRow();
-
-            HtmlTableCell libelleCell = new HtmlTableCell();
-            TextBox libelleTextBox = new TextBox();
-            libelleTextBox.ID = "LibelleTextBox" + pdfTable.Rows.Count;
-            libelleTextBox.CssClass = "h-11 max-w-64 rounded border px-1";
-            libelleCell.Controls.Add(libelleTextBox);
-            newRow.Cells.Add(libelleCell);
-
-            HtmlTableCell fileUploadCell = new HtmlTableCell();
-            FileUpload fileUpload = new FileUpload();
-            fileUpload.ID = "PdfFileUpload" + pdfTable.Rows.Count;
-            fileUpload.CssClass = "h-11 max-w-64 rounded border px-1";
-            fileUploadCell.Controls.Add(fileUpload);
-            newRow.Cells.Add(fileUploadCell);
-
-            HtmlTableCell buttonCell = new HtmlTableCell();
-            Button addButton = new Button();
-            addButton.ID = "AddRowButton" + pdfTable.Rows.Count;
-            addButton.Text = "+";
-            addButton.CssClass = "text-xl font-bold text-blue-500";
-            addButton.Click += new EventHandler(AddRowButton_Click);
-            buttonCell.Controls.Add(addButton);
-            newRow.Cells.Add(buttonCell);
-
-            pdfTable.Rows.Add(newRow);
-        }
         private bool FileExistsInDatabase(string numeroAo, string fileName)
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             string query = "SELECT COUNT(*) FROM AdminUploads WHERE Numero_Ao = @NumeroAo AND FileName = @FileName";
 
             try
@@ -166,10 +145,10 @@ namespace amendis2.Admin
             }
         }
 
-        private void SaveDetailsToDatabase(string numeroAo, string designation, string filename)
+        private void SaveDetailsToDatabase(string numeroAo, string libelle, string fileName)
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            string query = "INSERT INTO AdminUploads (Numero_Ao, Designation, FileName) VALUES (@NumeroAo, @Designation, @FileName)";
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string query = "INSERT INTO AdminUploads (Numero_Ao, Libelle, FileName) VALUES (@NumeroAo, @Libelle, @FileName)";
 
             try
             {
@@ -177,10 +156,9 @@ namespace amendis2.Admin
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        // Use parameters to prevent SQL injection
                         command.Parameters.Add("@NumeroAo", SqlDbType.NVarChar, 100).Value = numeroAo;
-                        command.Parameters.Add("@Designation", SqlDbType.NVarChar, 255).Value = designation;
-                        command.Parameters.Add("@FileName", SqlDbType.NVarChar, 255).Value = filename;
+                        command.Parameters.Add("@Libelle", SqlDbType.NVarChar, 255).Value = libelle;
+                        command.Parameters.Add("@FileName", SqlDbType.NVarChar, 255).Value = fileName;
 
                         connection.Open();
                         command.ExecuteNonQuery();
@@ -198,6 +176,5 @@ namespace amendis2.Admin
                 throw new ApplicationException("An unexpected error occurred.", ex);
             }
         }
-
     }
 }
