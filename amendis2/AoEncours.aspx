@@ -30,11 +30,11 @@
             <Columns>
                 <asp:BoundField DataField="Site" HeaderText="Site" SortExpression="Site">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    <ItemStyle Width="70px" HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle Width="70px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Numero_Ao" HeaderText="N° AO" SortExpression="Numero_Ao">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    <ItemStyle Width="70px" HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Designa" HeaderText="Désignation" SortExpression="Designa">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -43,21 +43,21 @@
                 <asp:BoundField DataField="Date_lan" DataFormatString="{0:d}" HtmlEncode="False"
                     HeaderText="Date lan." SortExpression="Date_lan">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    <ItemStyle Width="70px" HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Date_rem" DataFormatString="{0:d}" HtmlEncode="False"
                     HeaderText="Date rem." SortExpression="Date_rem">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    <ItemStyle Width="70px" HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Date_ouv_adm" DataFormatString="{0:d}" HtmlEncode="False"
                     HeaderText="Date adm." SortExpression="Date_ouv_adm">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    <ItemStyle Width="70px" HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Seance_ouv" HeaderText="Seance ouv." SortExpression="Seance_ouv">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                    <ItemStyle Width="70px" HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
                <asp:TemplateField HeaderText="Details">
                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
