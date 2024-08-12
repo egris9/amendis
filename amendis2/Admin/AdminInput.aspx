@@ -9,10 +9,12 @@
                 <h3 class="text-lg font-medium">Numero AO:</h3>
                 <asp:Label ID="NumeroAoLabel" runat="server" CssClass="text-lg font-medium"></asp:Label>
             </div>
+
             <div class="flex items-center space-x-4">
                 <h3 class="text-lg font-medium">Designation:</h3>
                 <asp:Label ID="DesignationLabel" runat="server" CssClass="text-lg font-medium"></asp:Label>
             </div>
+
             <table id="pdfTable" runat="server" class="w-full border-collapse border border-gray-200">
                 <thead>
                     <tr class="bg-gray-100 text-left">
