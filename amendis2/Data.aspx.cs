@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,23 +15,37 @@ namespace amendis2
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
+            {       string numeroAo = Request.QueryString["Numero_Ao"];
+                    LoadData(numeroAo);
                 if (!string.IsNullOrEmpty(Request.QueryString["Numero_Ao"]))
                 {
-                    string numeroAo = Request.QueryString["Numero_Ao"];
-                    LoadData(numeroAo);
+                    string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        string query = "SELECT Designa FROM V_AO_AO WHERE Numero_Ao = @Numero_Ao";
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@Numero_Ao", numeroAo);
+                        conn.Open();
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            NumeroAoLabel.Text = numeroAo;
+                            DesignationLabel.Text = result.ToString();
+                        }
+                    }
                 }
                 else
                 {
                     // Gérer le cas où Numero_Ao n'est pas fourni
                     Response.Redirect("~/ErrorPage.aspx");
                 }
+
             }
         }
         private void LoadData(string numeroAo)
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            string query = "SELECT Numero_Ao, Designation, FileName FROM AdminUploads WHERE Numero_Ao = @NumeroAo";
+            string query = "SELECT Numero_Ao, Libelle, FileName FROM AdminUploads WHERE Numero_Ao = @NumeroAo";
 
             try
             {
@@ -45,30 +60,27 @@ namespace amendis2
                             DataTable dataTable = new DataTable();
                             dataTable.Load(reader);
 
-                            if (dataTable.Rows.Count > 0)
+                            // Check for any rows in the DataTable
+                            Console.WriteLine("DataTable row count: " + dataTable.Rows.Count);
+                            foreach (DataRow row in dataTable.Rows)
                             {
-                                DataRow firstRow = dataTable.Rows[0];
-                                NumeroAoLabel.Text = firstRow["Numero_Ao"].ToString();
-                                DesignationLabel.Text = firstRow["Designation"].ToString();
-                                PdfRepeater.DataSource = dataTable;
-                                PdfRepeater.DataBind();
+                                Console.WriteLine($"Libelle: {row["Libelle"]}, FileName: {row["FileName"]}");
                             }
-                            else
-                            {
-                                // Handle the case where no records are found
-                                NumeroAoLabel.Text = "Pas d'information pour le moment";
-                                DesignationLabel.Text = "Pas d'information pour le moment";
-                                PdfRepeater.DataSource = null;
-                                PdfRepeater.DataBind();
-                            }
+
+                            // Bind the data to the Repeater
+                            PdfRepeater.DataSource = dataTable;
+                            PdfRepeater.DataBind();
+
+                            // Check if the Repeater control is adding any extra rows
+                            Console.WriteLine("Repeater row count: " + PdfRepeater.Items.Count);
                         }
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                // Gérer l'exception SQL ou la journaliser
-                throw new ApplicationException("Une erreur s'est produite lors de la récupération des détails de la base de données.", ex);
+                // Handle the exception (e.g., log it)
+                Console.WriteLine("Error: " + ex.Message);
             }
         }
     }
