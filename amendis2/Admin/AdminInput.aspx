@@ -1,45 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdminInput.aspx.cs" Inherits="amendis2.Admin.AdminInput" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <main>
-        <div class="mb-5 ml-20 mt-8 flex sm:ml-36">
-            
-                <h2 class="text-xl font-medium sm:text-3xl">Saisie des Détails d'AO</h2>
-            
+     <main class="mx-auto mt-8 max-w-7xl px-4 py-8">
+        <div class="mb-8">
+            <h2 class="text-2xl font-medium">Saisie des Détails d'AO</h2>
         </div>
-        <br />
-        <div class="max-w-[85%] mx-auto mb-5 flex w-full flex-col items-start">
-            <div class="mb-4 flex items-center space-x-4">
-                <h2 class="text-xl font-medium">Numero AO:</h2>
-                <asp:Label ID="NumeroAoLabel" runat="server" CssClass="label-class text-xl"></asp:Label>
+        <div class="space-y-6">
+            <div class="flex items-center space-x-4">
+                <h3 class="text-lg font-medium">Numero AO:</h3>
+                <asp:Label ID="NumeroAoLabel" runat="server" CssClass="text-lg font-medium"></asp:Label>
             </div>
-            <div class="mb-4 flex items-center space-x-4">
-                <h2 class="text-xl font-medium">Designation:</h2>
-                <asp:Label ID="DesignationLabel" runat="server" CssClass="label-class text-xl"></asp:Label>
+            <div class="flex items-center space-x-4">
+                <h3 class="text-lg font-medium">Designation:</h3>
+                <asp:Label ID="DesignationLabel" runat="server" CssClass="text-lg font-medium"></asp:Label>
             </div>
-           <table id="pdfTable" runat="server" class="w-full border-collapse">
+            <table id="pdfTable" runat="server" class="w-full border-collapse border border-gray-200">
                 <thead>
-                    <tr>
-                        <th class="border-b-2 px-4 py-2 text-center">Libelle</th>
-                        <th class="border-b-2 px-4 py-2 text-center">Fichier PDF</th>
-                        <th class="border-b-2 px-4 py-2"></th>
+                    <tr class="bg-gray-100 text-left">
+                        <th class="border-b px-6 py-4 text-lg">Libelle</th>
+                        <th class="border-b px-6 py-4 text-lg">Fichier PDF</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="border px-4 py-2">
-                            <asp:TextBox ID="LibelleTextBox" runat="server" CssClass="h-11 w-full rounded border px-1 text-center"></asp:TextBox>
+                        <td class="border px-8 py-6">
+                            <asp:TextBox ID="LibelleTextBox" runat="server" CssClass="h-12 w-full rounded border border-gray-300 px-3 text-center text-lg" aria-label="Libelle"></asp:TextBox>
                         </td>
-                        <td class="border px-4 py-2">
-                            <asp:FileUpload ID="PdfFileUpload" runat="server" CssClass="h-11 w-full items-center rounded border px-1" />
-                        </td>
-                        <td class="border px-4 py-2">
-                            <asp:Button ID="AddRowButton" runat="server" Text="+" OnClick="AddRowButton_Click" CssClass="text-xl font-bold text-blue-500" />
+                        <td class="border px-6 py-4">
+                            <asp:FileUpload ID="PdfFileUpload" runat="server" CssClass="h-12 w-full rounded border border-gray-300 px-3 text-lg" aria-label="Fichier PDF" />
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <asp:Button ID="SubmitButton" runat="server" Text="Submit" CssClass="ml-24 mt-8 rounded bg-neutral-700 px-10 py-2 text-white" OnClick="SubmitButton_Click" />
-             <asp:Label ID="MessageLabel" runat="server" CssClass="mt-4 block text-lg font-medium text-red-600" Visible="false"></asp:Label>
+
+            <asp:Button ID="SubmitButton" runat="server" Text="Submit" CssClass="mt-4 rounded bg-neutral-700 px-10 py-2 text-white" OnClick="SubmitButton_Click" aria-label="Submit" />
+            <asp:Label ID="MessageLabel" runat="server" CssClass="mt-4 text-lg font-medium text-red-600" Visible="false"></asp:Label>
         </div>
     </main>
 </asp:Content>

@@ -60,15 +60,6 @@ namespace amendis2.Admin
         protected global::System.Web.UI.WebControls.FileUpload PdfFileUpload;
 
         /// <summary>
-        /// AddRowButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddRowButton;
-
-        /// <summary>
         /// SubmitButton control.
         /// </summary>
         /// <remarks>
