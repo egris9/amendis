@@ -31,7 +31,7 @@
             <AlternatingRowStyle BackColor="#CCCCCC"></AlternatingRowStyle>
            <Columns>
                 <asp:BoundField DataField="Site" HeaderText="Site" SortExpression="Site">
-                    <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
+                    <ItemStyle Width="70px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Numero_ao" HeaderText="N° AO" SortExpression="Numero_ao">
                     <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
@@ -45,15 +45,18 @@
                 <asp:BoundField DataField="Date_ouv_fin" DataFormatString="{0:dd/MM/yyyy}" HtmlEncode="False" HeaderText="Ouvertur fin." SortExpression="Date_ouv_fin">
                     <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Montant" DataFormatString="{0:N2}" HtmlEncode="False" HeaderText="Montant DHHT." SortExpression="Montant">
+                <asp:BoundField DataField="Montant" DataFormatString="{0:N1}" HtmlEncode="False" HeaderText="Montant DHHT." SortExpression="Montant">
                     <ItemStyle Width="100px" HorizontalAlign="center"  />
                 </asp:BoundField>
                 <asp:BoundField DataField="Res_projet" HeaderText="Attributaire." SortExpression="Res_projet">
                     <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Conso" HeaderText="Detail" HtmlEncode="False" SortExpression="Conso">
+                <asp:TemplateField HeaderText="Detail">
+                    <ItemTemplate>
+                        <asp:Label ID="lblConso" runat="server" Text="--"></asp:Label>
+                    </ItemTemplate>
                     <ItemStyle Width="100px" HorizontalAlign="center" VerticalAlign="Middle" />
-                </asp:BoundField>
+                </asp:TemplateField>
             </Columns>
 
 

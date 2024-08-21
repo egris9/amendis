@@ -40,6 +40,7 @@ namespace amendis2.Admin
                             DesignationLabel.Text = result.ToString();
                         }
                     }
+                    BindPdfRepeater();
                 }
             }
         }
@@ -90,6 +91,7 @@ namespace amendis2.Admin
 
                         // Save file details to the database
                         SaveDetailsToDatabase(numeroAo, libelle, fileName);
+                        BindPdfRepeater();
 
                         // Provide feedback to the user
                         MessageLabel.Text = "File uploaded successfully.";
@@ -116,6 +118,73 @@ namespace amendis2.Admin
                 MessageLabel.Text = "Please enter a libelle and upload a file.";
                 MessageLabel.CssClass = "mt-4 block text-lg font-medium text-red-600";
                 MessageLabel.Visible = true;
+            }
+        }
+
+        protected void DeleteButton_Click(object sender, EventArgs e)
+        {
+            string fileName = (sender as Button).CommandArgument;
+            string numeroAo = NumeroAoLabel.Text;
+
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                // Delete file from the server
+                string filePath = Server.MapPath("~/Uploads/" + fileName);
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
+                // Delete file details from the database
+                DeleteFileFromDatabase(numeroAo, fileName);
+
+                // Refresh the Repeater control to reflect the changes
+                BindPdfRepeater();
+            }
+        }
+
+        private void DeleteFileFromDatabase(string numeroAo, string fileName)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string query = "DELETE FROM AdminUploads WHERE Numero_Ao = @NumeroAo AND FileName = @FileName";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@NumeroAo", numeroAo);
+                        command.Parameters.AddWithValue("@FileName", fileName);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Handle SQL exception or log it as needed
+                throw new ApplicationException("An error occurred while deleting the file from the database.", ex);
+            }
+        }
+        private void BindPdfRepeater()
+        {
+            // Fetch the updated data from the database and bind it to the Repeater control
+            string numeroAo = NumeroAoLabel.Text;
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string query = "SELECT Libelle, FileName FROM AdminUploads WHERE Numero_Ao = @NumeroAo";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@NumeroAo", numeroAo);
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    PdfRepeater.DataSource = reader;
+                    PdfRepeater.DataBind();
+                }
             }
         }
         private bool FileExistsInDatabase(string numeroAo, string fileName)
