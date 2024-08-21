@@ -41,8 +41,8 @@
                                         <td class="p-2 text-center">
                                             <asp:Label ID="LibelleLabel" runat="server" CssClass="text-xl"><%# Eval("Libelle") %></asp:Label>
                                         </td>
-                                        <td class="p-2 text-center">
-                                            <asp:HyperLink ID="PdfFileLink" runat="server" Text='<%# Eval("FileName") %>' NavigateUrl='<%# Eval("FileName", "~/Uploads/{0}") %>' Target="_blank" CssClass="hover:text-blue-500"></asp:HyperLink>
+                                        <td class="p-2">
+                                            <asp:HyperLink ID="PdfFileLink" runat="server" Text='<%# Eval("FileName") %>' NavigateUrl='<%# Eval("FileName", "~/Uploads/{0}") %>' Target="_blank" CssClass="hover:text-blue-500 ml-24"></asp:HyperLink>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
