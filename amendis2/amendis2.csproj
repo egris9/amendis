@@ -179,7 +179,9 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Admin\acount_creation.aspx" />
     <Content Include="Admin\AdminInput.aspx" />
+    <Content Include="Admin\modify_userRoles.aspx" />
     <Content Include="AoEncours.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
@@ -352,12 +354,26 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\acount_creation.aspx.cs">
+      <DependentUpon>acount_creation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\acount_creation.aspx.designer.cs">
+      <DependentUpon>acount_creation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdminInput.aspx.cs">
       <DependentUpon>AdminInput.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminInput.aspx.designer.cs">
       <DependentUpon>AdminInput.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\modify_userRoles.aspx.cs">
+      <DependentUpon>modify_userRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\modify_userRoles.aspx.designer.cs">
+      <DependentUpon>modify_userRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="AoEncours.aspx.cs">
       <DependentUpon>AoEncours.aspx</DependentUpon>
