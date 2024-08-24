@@ -14,8 +14,8 @@ namespace amendis2.Admin
     public partial class modify_userRoles
     {
         protected global::System.Web.UI.WebControls.DropDownList UserDropDownList;
-        protected global::System.Web.UI.WebControls.ListBox RolesListBox;
-        protected global::System.Web.UI.WebControls.Button LoadRolesButton;
+        protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
+        protected global::System.Web.UI.WebControls.CheckBoxList RolesCheckBoxList;
         protected global::System.Web.UI.WebControls.Button AddRoleButton;
         protected global::System.Web.UI.WebControls.Button RemoveRoleButton;
         protected global::System.Web.UI.WebControls.Label StatusMessageLabel;

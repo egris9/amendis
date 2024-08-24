@@ -5,30 +5,38 @@
 
         <div class="mb-6 flex items-center space-x-4">
             <label for="<%= UserDropDownList.ClientID %>" class="font-medium">shose user:</label>
-            <asp:DropDownList ID="UserDropDownList" CssClass="rounded border border-gray-300 p-1 sm:w-72" runat="server"></asp:DropDownList>
+               
+
+                <asp:TextBox 
+                    ID="SearchTextBox" 
+                    CssClass="mb-2 rounded border border-gray-700 p-1 sm:w-72" 
+                    runat="server" 
+                    AutoPostBack="true" 
+                    OnTextChanged="SearchTextBox_TextChanged" 
+                    Placeholder="Search users..." />
+            
+                <asp:DropDownList 
+                    ID="UserDropDownList" 
+                    CssClass="rounded border border-gray-300 p-1 sm:w-72" 
+                    runat="server" 
+                    AutoPostBack="true" 
+                    OnSelectedIndexChanged="UserDropDownList_SelectedIndexChanged">
+                </asp:DropDownList>        
+
         </div>
 
 
-         <div class="mb-4 mt-11 flex">
-                <asp:Button ID="LoadRolesButton" runat="server" CssClass="ml-52 rounded bg-neutral-700 px-10 py-2 text-white" Text="Load Roles" OnClick="LoadRolesButton_Click" />
-         </div>
+       <asp:CheckBoxList 
+            ID="RolesCheckBoxList"  
+            runat="server" 
+            AutoPostBack="false">
+        </asp:CheckBoxList>
 
-
-        <asp:ListBox ID="RolesListBox" runat="server" SelectionMode="Multiple"></asp:ListBox>
-
-        <div class="flex px-3 py-2">
-                 <div class="mb-4 mt-11 flex">
-                     <asp:Button ID="AddRoleButton" runat="server" CssClass="rounded bg-neutral-700 px-3 text-white" Text="Add Role" OnClick="AddRoleButton_Click" />
-                 </div>
-
-
-                 <div class="mb-4 mt-11 flex"> 
-                     <asp:Button ID="RemoveRoleButton" runat="server" CssClass="rounded bg-neutral-700 px-3 text-white" Text="Remove Role" OnClick="RemoveRoleButton_Click" />
-                </div>
-
+        <div class="mb-4 mt-11 flex">
+            <asp:Button ID="SaveChangesButton" runat="server" CssClass="rounded bg-neutral-700 px-3 text-white" Text="Save Changes" OnClick="SaveChangesButton_Click" />
         </div>
 
        
-        <asp:Label ID="StatusMessageLabel" runat="server" Visible="false"></asp:Label>
+        <asp:Label ID="StatusMessageLabel" runat="server" CssClass="text-green-600" Visible="false"></asp:Label>
     </main>
 </asp:Content>
