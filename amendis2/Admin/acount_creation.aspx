@@ -1,46 +1,51 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="acount_creation.aspx.cs" Inherits="amendis2.Admin.admin_acount_creation" Async="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <main  class="container mx-auto mb-12 flex flex-col p-4 text-sm sm:text-base 2xl:text-lg">
+    <main  class="container mx-auto mb-12 flex flex-col p-4 text-xl">
 
-    <div class="mb-6 flex items-center space-x-4">
-        <label for="user" class="font-medium">enter username :</label>
-       <asp:TextBox ID="UsernameTextBox" CssClass="rounded border border-gray-300 p-1 sm:w-72" runat="server" />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-           ControlToValidate="UsernameTextBox"
-           ErrorMessage="username is required." />
+    <div class="mb-16 flex justify-center p-7">
+        <p class="text-3xl font-medium">Creation de Compte </p>
+    </div>
+   <div class="mb-6 ml-32 flex items-center">
+       <div class="flex">
+            <label for="user" class="mr-9 font-medium">Saisir le Username :</label>
+            <asp:TextBox ID="UsernameTextBox" CssClass="ml-9 rounded border border-gray-300 p-1 sm:w-72" runat="server" />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                ControlToValidate="UsernameTextBox"
+                ErrorMessage="username is required."
+                CssClass="text-red-500" />
+        </div>
+       <div class="mr-5 flex">
+            <label for="email" class="mr-9 font-medium">Saisir L'email :</label>
+            <asp:TextBox ID="EmailTextBox" CssClass="rounded border border-gray-300 p-1 sm:w-72" runat="server" />
+            <asp:RequiredFieldValidator ID="EmailRequiredFieldValidator" runat="server"
+                ControlToValidate="EmailTextBox"
+                ErrorMessage="Email is required."
+                CssClass="text-red-500" />
+       </div>
     </div>
 
-      <div class="mb-6 flex items-center space-x-4">
-         <label for="user" class="font-medium">enter email :</label>
-         <asp:TextBox ID="EmailTextBox"  CssClass="rounded border border-gray-300 p-1 sm:w-72" runat="server" Required="true" />
-         <asp:RequiredFieldValidator ID="EmailRequiredFieldValidator" runat="server"
-                ControlToValidate="EmailTextBox"
-                ErrorMessage="Email is required." />
-      </div>
-
-
-
-    <div class="mb-6 flex items-center space-x-4">
-        <label for="pw" class="font-medium">enter PW :</label>
-            <asp:TextBox ID="PasswordTextBox" CssClass="rounded border border-gray-300 p-1 sm:w-72" runat="server" TextMode="Password" />
+    <div class="mb-6 ml-32 mt-10 flex items-center">
+        <div class="flex">
+            <label for="pw" class="mr-9 font-medium">Saisir le Mots de Passe :</label>
+            <asp:TextBox ID="PasswordTextBox" CssClass="mr-14 rounded border border-gray-300 p-1 sm:w-72" runat="server" TextMode="Password" />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                 ControlToValidate="PasswordTextBox"
-                ErrorMessage="pw is required." />
-
+                ErrorMessage="pw is required."
+                CssClass="text-red-500" />
+        </div>
+        <div class="flex">
+            <label for="<%= RoleDropDownList.ClientID %>" class="mr-9 font-medium">Role a Donner :</label>
+            <asp:DropDownList ID="RoleDropDownList" CssClass="rounded border border-gray-300 p-1 sm:w-64" runat="server">
+                <asp:ListItem Text="Superuser" Value="Superuser" />
+                <asp:ListItem Text="Admin" Value="Admin" />
+            </asp:DropDownList>
+        </div>
     </div>
 
-        <div class="mb-6 flex items-center space-x-4">
-            <label for="<%= RoleDropDownList.ClientID %>" class="font-medium">role a donner :</label>
-                <asp:DropDownList ID="RoleDropDownList" CssClass="rounded border border-gray-300 p-1 sm:w-72" runat="server">
-                    <asp:ListItem Text="Superuser" Value="Superuser" />
-                    <asp:ListItem Text="Admin" Value="Admin" />
-                </asp:DropDownList>
 
-                
-            </div>
         
-        <div class="mb-4 mt-11 flex">
-            <asp:Button ID="CreateUserButton" runat="server" Text="Create User" OnClick="CreateUserButton_Click" CssClass="ml-52 rounded bg-neutral-700 px-10 py-2 text-white" />
+        <div class="mb-4 mt-14 flex justify-center">
+            <asp:Button ID="CreateUserButton" runat="server" Text="Create User" OnClick="CreateUserButton_Click" CssClass="cursor-pointer rounded bg-neutral-700 px-14 py-2 text-white" />
         </div>
         
         <asp:Label ID="SuccessMessageLabel" runat="server" ForeColor="Green" Visible="false" />
