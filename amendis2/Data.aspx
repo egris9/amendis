@@ -47,6 +47,11 @@
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
+                           <div class="mb-5 mt-5">
+                               <asp:Label ID="NoDataLabel" runat="server" CssClass="text-center text-xl font-medium text-red-500" Visible="false">
+                                    Pas de données disponibles pour le moment.
+                                </asp:Label>
+                           </div>
                         </td>
 
                     </tr>

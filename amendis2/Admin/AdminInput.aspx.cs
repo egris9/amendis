@@ -184,6 +184,8 @@ namespace amendis2.Admin
                     SqlDataReader reader = cmd.ExecuteReader();
                     PdfRepeater.DataSource = reader;
                     PdfRepeater.DataBind();
+
+                    NoPdfRow.Visible = PdfRepeater.Items.Count == 0;
                 }
             }
         }

@@ -60,19 +60,17 @@ namespace amendis2
                             DataTable dataTable = new DataTable();
                             dataTable.Load(reader);
 
-                            // Check for any rows in the DataTable
-                            Console.WriteLine("DataTable row count: " + dataTable.Rows.Count);
-                            foreach (DataRow row in dataTable.Rows)
+                            if (dataTable.Rows.Count > 0)
                             {
-                                Console.WriteLine($"Libelle: {row["Libelle"]}, FileName: {row["FileName"]}");
+                                // Si des données existent, les lier au Repeater
+                                PdfRepeater.DataSource = dataTable;
+                                PdfRepeater.DataBind();
                             }
-
-                            // Bind the data to the Repeater
-                            PdfRepeater.DataSource = dataTable;
-                            PdfRepeater.DataBind();
-
-                            // Check if the Repeater control is adding any extra rows
-                            Console.WriteLine("Repeater row count: " + PdfRepeater.Items.Count);
+                            else
+                            {
+                                // Si aucune donnée n'est disponible, afficher le message
+                                NoDataLabel.Visible = true;
+                            }
                         }
                     }
                 }
