@@ -6,6 +6,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using amendis2.Models;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+using System.Web.UI.HtmlControls;
+using System.Web.Security;
+
 
 namespace amendis2.Admin
 {
@@ -27,88 +33,38 @@ namespace amendis2.Admin
                 {
                     Response.Redirect("~/Acceuil.aspx"); // Redirect to an access denied page
                 }
-
-                // Load users into the dropdown list
-                LoadUsers();
-
-                
-
-                
+                PopulateDatalist();
             }
         }
 
-
-
-
-
-
-        protected void SearchTextBox_TextChanged(object sender, EventArgs e)
+        private void PopulateDatalist()
         {
-            string searchTerm = SearchTextBox.Text.Trim();
-            LoadUsers(searchTerm);
-        }
+            var users = _userManager.Users.ToList();
 
-        private void LoadUsers(string searchTerm = "")
-        {
-            var lowerSearchTerm = searchTerm.ToLower();
-            var users = _userManager.Users
-                .Where(u => u.UserName != null && u.UserName.ToLower().Contains(lowerSearchTerm))
-                .ToList();
-
-            BindUsersToDropDown(users);
-
-            if (users.Count == 1)
+            foreach (var user in users)
             {
-                UserDropDownList.SelectedValue = users.First().Id;
-
-                // Trigger SelectedIndexChanged manually
-                UserDropDownList_SelectedIndexChanged(UserDropDownList, EventArgs.Empty);
-            }
-            else if (UserDropDownList.SelectedValue != null)
-            {
-                UserDropDownList_SelectedIndexChanged(UserDropDownList, EventArgs.Empty);
+                HtmlGenericControl option = new HtmlGenericControl("option");
+                option.Attributes.Add("value", user.UserName);
+                option.InnerText = user.UserName;
+                // Add the <option> to the <datalist>
+                dynamicList.Controls.Add(option);
             }
         }
 
-
-        private void BindUsersToDropDown(IEnumerable<ApplicationUser> users)
+        private async Task LoadRoles(string username)
         {
-            UserDropDownList.DataSource = users;
-            UserDropDownList.DataTextField = "UserName";
-            UserDropDownList.DataValueField = "Id";
-            UserDropDownList.DataBind();
-        }
-
-        protected async void UserDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Ensure _userManager is not null
-            if (_userManager == null || _roleManager == null)
-            {
-                StatusMessageLabel.Text = "UserManager or RoleManager is not initialized.";
-                StatusMessageLabel.Visible = true;
-                return;
-            }
-            System.Diagnostics.Debug.WriteLine("Selected user ID: " + UserDropDownList.SelectedValue);
-
-
-            await LoadRoles();
-        }
-
-        private async Task LoadRoles()
-        {
-            if (UserDropDownList.SelectedValue == null)
+            if (string.IsNullOrEmpty(username))
             {
                 System.Diagnostics.Debug.WriteLine("No user selected.");
                 return;
             }
 
-            string userId = UserDropDownList.SelectedValue;
-            System.Diagnostics.Debug.WriteLine("Loading roles for user ID: " + userId);
+            System.Diagnostics.Debug.WriteLine("Loading roles for user: " + username);
 
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByNameAsync(username);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(userId);
+                var userRoles = await _userManager.GetRolesAsync(user.Id);
                 var roles = _roleManager.Roles.ToList();
 
                 RolesCheckBoxList.Items.Clear();
@@ -130,32 +86,33 @@ namespace amendis2.Admin
             }
         }
 
-
-
+        protected async void SearchButton_Click(object sender, EventArgs e)
+        {
+            string username = SearchTextBox.Text;
+            await LoadRoles(username);
+        }
 
         protected async void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            if (UserDropDownList.SelectedValue == null) return;
-
-            string userId = UserDropDownList.SelectedValue;
-            var user = await _userManager.FindByIdAsync(userId);
+            string username = SearchTextBox.Text;
+            var user = await _userManager.FindByNameAsync(username);
 
             if (user != null)
             {
                 foreach (ListItem item in RolesCheckBoxList.Items)
                 {
-                    if (item.Selected && !await _userManager.IsInRoleAsync(userId, item.Text))
+                    if (item.Selected && !await _userManager.IsInRoleAsync(user.Id, item.Text))
                     {
-                        var result = await _userManager.AddToRoleAsync(userId, item.Text);
+                        var result = await _userManager.AddToRoleAsync(user.Id, item.Text);
                         if (!result.Succeeded)
                         {
                             StatusMessageLabel.Text = $"Failed to add role '{item.Text}': " + string.Join(", ", result.Errors);
                             StatusMessageLabel.Visible = true;
                         }
                     }
-                    else if (!item.Selected && await _userManager.IsInRoleAsync(userId, item.Text))
+                    else if (!item.Selected && await _userManager.IsInRoleAsync(user.Id, item.Text))
                     {
-                        var result = await _userManager.RemoveFromRoleAsync(userId, item.Text);
+                        var result = await _userManager.RemoveFromRoleAsync(user.Id, item.Text);
                         if (!result.Succeeded)
                         {
                             StatusMessageLabel.Text = $"Failed to remove role '{item.Text}': " + string.Join(", ", result.Errors);
@@ -170,3 +127,4 @@ namespace amendis2.Admin
         }
     }
 }
+

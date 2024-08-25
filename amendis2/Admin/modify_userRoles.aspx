@@ -4,29 +4,28 @@
 
 
         <div class="mb-6 flex items-center space-x-4">
-            <label for="<%= UserDropDownList.ClientID %>" class="font-medium">shose user:</label>
-               
-
-                <asp:TextBox 
-                    ID="SearchTextBox" 
-                    CssClass="mb-2 rounded border border-gray-700 p-1 sm:w-72" 
-                    runat="server" 
-                    AutoPostBack="true" 
-                    OnTextChanged="SearchTextBox_TextChanged" 
-                    Placeholder="Search users..." />
+           
+             
             
-                <asp:DropDownList 
-                    ID="UserDropDownList" 
-                    CssClass="rounded border border-gray-300 p-1 sm:w-72" 
-                    runat="server" 
-                    AutoPostBack="true" 
-                    OnSelectedIndexChanged="UserDropDownList_SelectedIndexChanged">
-                </asp:DropDownList>        
+            <div class="mx-auto mb-2 flex w-full items-center"> 
+
+                <label for="<%= SearchTextBox.ClientID %>" class="text-xl mr-4 font-medium">entrer l'utilisateur :</label>
+
+                 <asp:TextBox ID="SearchTextBox" CssClass="rounded border border-gray-700 p-1 sm:w-72" runat="server" list="dynamicList" placeholder="type a user ..."></asp:TextBox>
+                <datalist id="dynamicList" ClientIDMode="Static" runat="server">
+                    <!-- Options will be populated from code-behind -->
+                </datalist>
+                <asp:LinkButton ID="SearchButton" runat="server" CssClass="ml-2 flex h-10 items-center self-center rounded bg-neutral-500 p-2 text-white" OnClick="SearchButton_Click">
+                    <span class="material-symbols-outlined self-center text-xl">search</span>
+                </asp:LinkButton>
+                
+            </div>
+                 
 
         </div>
 
 
-       <asp:CheckBoxList 
+        <asp:CheckBoxList 
             ID="RolesCheckBoxList"  
             runat="server" 
             AutoPostBack="false">

@@ -19,5 +19,9 @@ namespace amendis2.Admin
         protected global::System.Web.UI.WebControls.Button AddRoleButton;
         protected global::System.Web.UI.WebControls.Button RemoveRoleButton;
         protected global::System.Web.UI.WebControls.Label StatusMessageLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dynamicList;
+        protected global::System.Web.UI.WebControls.TextBox txtInput;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
+
     }
 }
