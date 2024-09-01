@@ -65,6 +65,7 @@
                 <div class="absolute rounded-[15px] p-5 -translate-x-1/2 left-1/2 top-[110%] pb-4  w-[96%] bg-neutral-500  peer-checked:flex hidden flex-col">
                     <ul class="block font-medium text-white">
                         
+                        
                         <li> <a class="whitespace-nowrap py-3 ps-px font-medium  sm:px-3 " runat="server" href="Acceuil.aspx">Acceuil</a></li>
                         <li> <a class="whitespace-nowrap	py-3  ps-px font-medium sm:px-3 " runat="server" href="AoEncours.aspx">Avis d'appels d'offres</a></li>
                         <li> <a class="whitespace-nowrap	py-3 ps-px font-medium  sm:px-3 " runat="server" href="Mattribues.aspx">Marchés attribués</a></li>
@@ -86,6 +87,19 @@
                          </div></li>
                         <li><a class="whitespace-nowrap	 py-3 ps-px font-medium text-white sm:px-3 hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a></li>
                         <li><a class="whitespace-nowrap	py-3 ps-px font-medium text-white sm:px-3 hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a></li>
+                        <li> <a id="a1" class="whitespace-nowrap py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="/Admin/acount_creation.aspx">Admin</a></li>
+                        <li>
+                            <asp:LoginView runat="server" ViewStateMode="Enabled">
+                                <AnonymousTemplate>
+                                    <a class="whitespace-nowrap	py-3 ps-px font-medium text-white sm:px-3 hover:text-neutral-300" runat="server" href="Account/Login.aspx">
+                                        Se connecter
+                                    </a>
+                                </AnonymousTemplate>
+                                <LoggedInTemplate>
+                                    <asp:LoginStatus runat="server" CssClass="whitespace-nowrap	py-3 ps-px font-medium text-white sm:px-3 hover:text-neutral-300" LogoutAction="Redirect" LogoutText="Déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </LoggedInTemplate>
+                            </asp:LoginView>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -98,9 +112,7 @@
         <div id="navbar-collapse-with-animation" class="hidden  justify-center w-full min-[930px]:flex min-[930px]:w-auto min-[930px]:items-center">
             <div class="min-[1400px]:gap-6 min-[1450px]:gap-8 min-[1280px]:gap-x-20  min-[1350px]:gap-14 min-[1562px]:gap-2 min-[1220px]:gap-16 min-[1620px]:gap-4 min-[1690px]:gap-6  min-[1160px]:gap-14 min-[930px]:gap-10 flex flex-col py-2 min-[930px]:flex-row min-[930px]:items-center min-[930px]:justify-end min-[930px]:py-0 ">
 
-                <a id="adminLink" class="whitespace-nowrap py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="/Admin/acount_creation.aspx">
-                    Creation
-                </a>
+                
                 <a class="max-[1060px]:hidden whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Acceuil.aspx">Acceuil</a>
                 <a class="whitespace-nowrap	py-3 ps-px w-max font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="AoEncours.aspx">Avis d'appels d'offres</a>
                 <a class="whitespace-nowrap	py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="Mattribues.aspx">Marchés attribués</a>
@@ -124,6 +136,9 @@
                 </div>
                 <a class="max-[1560px]:hidden whitespace-nowrap	py-3 ps-px font-medium text-white sm:px-3 hover:text-neutral-300" runat="server" href="investissements.aspx">Programmes d'investissements</a>
                 <a class="hidden min-[1350px]:block whitespace-nowrap	py-3 ps-px font-medium text-white sm:px-3 hover:text-neutral-300" runat="server" href="Contact.aspx">Nous contacter</a>
+                <a id="adminLink" class="whitespace-nowrap py-3 ps-px font-medium dark:text-white sm:px-3 dark:hover:text-neutral-300" runat="server" href="/Admin/acount_creation.aspx">
+                    Admin
+                </a>
                 <asp:LoginView runat="server" ViewStateMode="Enabled">
                     <AnonymousTemplate>
                         <a class="text-[17px] whitespace-nowrap	 ms-3 flex items-center gap-x-2 py-2  font-medium text-white  hover:text-neutral-300" runat="server" href="Account/Login.aspx">

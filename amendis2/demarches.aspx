@@ -3,7 +3,7 @@
 
     <main aria-labelledby="title">
 
-<div class="mx-14 mb-12 mt-14 flex flex-col gap-y-7 2xl:text-lg lg:ml-60">
+<div class="mx-14 mb-12 mt-14 flex flex-col gap-y-7 lg:ml-60 2xl:text-lg">
     <h3 class="text-4xl">Démarches Progrès social​​</h3>
     <p>  Amendis adopte une démarche de progrès social auprès de ses fournisseurs 
         afin de s’assurer que les normes de sécurité, d'hygiène, 
@@ -17,12 +17,14 @@
         <p> A cet effet, Amendis a élaboré une charte responsables, les soumissionnaires sont tenus d'en prendre connaissance,
             l'approuver, et veiller à son respect.</p>
 
-    <a class="ml-6 flex flex-row items-center text-blue-600" href="Acceuil.aspx">
-        Télécharger la Charte Achats Responsables Version française </a>
+    <a class="ml-6 flex flex-row items-center text-blue-600" href="PDF/Charte%20Achats%20Responsables%20Amendis%20VF%20Valide.pdf" download="Charte_Achats_Responsables_Fr.pdf">
+        Télécharger la Charte Achats Responsables Version française
+    </a>
 
+    <a class="ml-6 flex flex-row items-center text-blue-600" href="PDF/Charte%20Achats%20Responsables%20VA%20ValideAR.pdf" download="Charte_Achats_Responsables_Ar.pdf">
+        Télécharger la Charte Achats Responsables Version Arabe
+    </a>
 
-    <a class="ml-6 flex flex-row items-center text-blue-600" href="Acceuil.aspx">
-        Télécharger la Charte Achats Responsables Version Arabe </a>
         
     <p> Amendis organise annuellement au profit de ses fournisseurs et de ses sous-traitants des
         actions de sensibilisation et de formations sur la prévention des accidents de travail,<br />

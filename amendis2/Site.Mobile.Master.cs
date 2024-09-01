@@ -76,6 +76,17 @@ namespace amendis2
         {
             string currentPage = HttpContext.Current.Request.Url.AbsolutePath.ToLower();
             IsLoginPage = currentPage.EndsWith("Login") || currentPage.EndsWith("Register");
+
+            if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+            {
+                adminLink.Visible = true;
+                a1.Visible = true;
+            }
+            else
+            {
+                adminLink.Visible = false;
+                a1.Visible = false;
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

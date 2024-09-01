@@ -208,6 +208,11 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Account\Web.config" />
     <Content Include="Admin\Web.config" />
+    <Content Include="PDF\Charte Achats Responsables Amendis VF Valide.pdf" />
+    <Content Include="PDF\Charte Achats Responsables VA ValideAR.pdf" />
+    <Content Include="PDF\Programme Prévisionnel Tétouan.pdf" />
+    <Content Include="PDF\Programme Prévisionnel Tanger.pdf" />
+    <Content Include="PDF\Règlements des marchés.rar" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

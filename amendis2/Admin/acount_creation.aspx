@@ -76,10 +76,6 @@
     </div>
 
 
-
-
-
-
        <!-- Nom_deSociete and Role Input Section -->
     <div class="mx-auto mb-6 mt-10 flex w-full max-w-4xl flex-col items-center justify-between gap-y-10 md:flex-row">
        
