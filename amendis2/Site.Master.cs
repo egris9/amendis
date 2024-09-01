@@ -75,10 +75,12 @@ namespace amendis2
             if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
             {
                 adminLink.Visible = true;
+                a1.Visible = true;
             }
             else
             {
                 adminLink.Visible = false;
+                a1.Visible = false;
             }
 
         }

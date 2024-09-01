@@ -87,6 +87,15 @@ namespace amendis2.Admin
         protected global::System.Web.UI.WebControls.Button CreateUserButton;
 
         /// <summary>
+        /// ModifyUserLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ModifyUserLink;
+
+        /// <summary>
         /// SuccessMessageLabel control.
         /// </summary>
         /// <remarks>

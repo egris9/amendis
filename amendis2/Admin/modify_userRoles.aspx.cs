@@ -51,19 +51,22 @@ namespace amendis2.Admin
             }
         }
 
-        private async Task LoadRoles(string username)
+        private async Task LoadUserDetails(string username)
         {
             if (string.IsNullOrEmpty(username))
             {
-                System.Diagnostics.Debug.WriteLine("No user selected.");
+                StatusMessageLabel.Text = "No user selected.";
+                StatusMessageLabel.Visible = true;
                 return;
             }
-
-            System.Diagnostics.Debug.WriteLine("Loading roles for user: " + username);
 
             var user = await _userManager.FindByNameAsync(username);
             if (user != null)
             {
+                UsernameTextBox.Text = user.UserName;
+                EmailTextBox.Text = user.Email;
+
+                // Load roles
                 var userRoles = await _userManager.GetRolesAsync(user.Id);
                 var roles = _roleManager.Roles.ToList();
 
@@ -78,6 +81,8 @@ namespace amendis2.Admin
                     };
                     RolesCheckBoxList.Items.Add(item);
                 }
+
+                UserDetailsPanel.Visible = true;
             }
             else
             {
@@ -89,7 +94,7 @@ namespace amendis2.Admin
         protected async void SearchButton_Click(object sender, EventArgs e)
         {
             string username = SearchTextBox.Text;
-            await LoadRoles(username);
+            await LoadUserDetails(username);
         }
 
         protected async void SaveChangesButton_Click(object sender, EventArgs e)
@@ -99,32 +104,71 @@ namespace amendis2.Admin
 
             if (user != null)
             {
-                foreach (ListItem item in RolesCheckBoxList.Items)
+                // Update basic user info
+                user.UserName = UsernameTextBox.Text;
+                user.Email = EmailTextBox.Text;
+
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
                 {
-                    if (item.Selected && !await _userManager.IsInRoleAsync(user.Id, item.Text))
+                    // Update roles
+                    foreach (ListItem item in RolesCheckBoxList.Items)
                     {
-                        var result = await _userManager.AddToRoleAsync(user.Id, item.Text);
-                        if (!result.Succeeded)
+                        if (item.Selected && !await _userManager.IsInRoleAsync(user.Id, item.Text))
                         {
-                            StatusMessageLabel.Text = $"Failed to add role '{item.Text}': " + string.Join(", ", result.Errors);
-                            StatusMessageLabel.Visible = true;
+                            var roleResult = await _userManager.AddToRoleAsync(user.Id, item.Text);
+                            if (!roleResult.Succeeded)
+                            {
+                                StatusMessageLabel.Text = $"Failed to add role '{item.Text}': " + string.Join(", ", roleResult.Errors);
+                                StatusMessageLabel.Visible = true;
+                            }
+                        }
+                        else if (!item.Selected && await _userManager.IsInRoleAsync(user.Id, item.Text))
+                        {
+                            var roleResult = await _userManager.RemoveFromRoleAsync(user.Id, item.Text);
+                            if (!roleResult.Succeeded)
+                            {
+                                StatusMessageLabel.Text = $"Failed to remove role '{item.Text}': " + string.Join(", ", roleResult.Errors);
+                                StatusMessageLabel.Visible = true;
+                            }
                         }
                     }
-                    else if (!item.Selected && await _userManager.IsInRoleAsync(user.Id, item.Text))
+
+                    // Update password
+                    var newPassword = PasswordTextBox.Text;
+                    if (!string.IsNullOrEmpty(newPassword))
                     {
-                        var result = await _userManager.RemoveFromRoleAsync(user.Id, item.Text);
-                        if (!result.Succeeded)
+                        var passwordResult = await _userManager.RemovePasswordAsync(user.Id);
+                        if (passwordResult.Succeeded)
                         {
-                            StatusMessageLabel.Text = $"Failed to remove role '{item.Text}': " + string.Join(", ", result.Errors);
+                            passwordResult = await _userManager.AddPasswordAsync(user.Id, newPassword);
+                            if (passwordResult.Succeeded)
+                            {
+                                StatusMessageLabel.Text = "User updated successfully.";
+                                StatusMessageLabel.Visible = true;
+                            }
+                            else
+                            {
+                                StatusMessageLabel.Text = $"Failed to update password: " + string.Join(", ", passwordResult.Errors);
+                                StatusMessageLabel.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            StatusMessageLabel.Text = $"Failed to remove old password: " + string.Join(", ", passwordResult.Errors);
                             StatusMessageLabel.Visible = true;
                         }
                     }
                 }
-
-                StatusMessageLabel.Text = "Roles updated successfully.";
-                StatusMessageLabel.Visible = true;
+                else
+                {
+                    StatusMessageLabel.Text = $"Failed to update user: " + string.Join(", ", result.Errors);
+                    StatusMessageLabel.Visible = true;
+                }
             }
         }
+
     }
 }
+
 

@@ -47,6 +47,11 @@
         <div class="mb-4 mt-14 flex justify-center">
             <asp:Button ID="CreateUserButton" runat="server" Text="Create User" OnClick="CreateUserButton_Click" CssClass="cursor-pointer rounded bg-neutral-700 px-14 py-2 text-white" />
         </div>
+        <div class="mt-3 flex justify-center">
+            <asp:HyperLink ID="ModifyUserLink" runat="server" NavigateUrl="~/Admin/modify_userRoles.aspx" CssClass="text-blue-500 underline hover:text-blue-800">
+                Modifier un Utilisateur
+            </asp:HyperLink>
+        </div>
         
         <asp:Label ID="SuccessMessageLabel" runat="server" ForeColor="Green" Visible="false" />
         

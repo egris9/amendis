@@ -52,7 +52,9 @@
     display: inline-block;
 }
 
-
+.cll label{
+    margin-left : 8px;
+}
 
 
 

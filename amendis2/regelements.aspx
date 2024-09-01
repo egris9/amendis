@@ -4,7 +4,7 @@
     
     <main aria-labelledby="title">
 
-    <div class="mx-14 mb-12 mt-14 flex flex-col gap-y-3 2xl:text-lg lg:ml-60">
+    <div class="mx-14 mb-12 mt-14 flex flex-col gap-y-3 lg:ml-60 2xl:text-lg">
         <h3 class="mb-4 text-2xl md:text-3xl lg:text-4xl">Règlements des marchés​</h3>
         <p>
             Amendis est une société en charge de la gestion déléguée de l’eau, de l’électricité et de l’assainissement liquide
@@ -34,10 +34,11 @@
         <p>Les dossiers présentés doivent se conformer aux prescriptions du Règlement Particulier des Appels d’Offres (cf.RPAQ).<br />
             Les entreprises sont informées des résultats des évaluations effectuées.</p>
 
-        <a class="ml-6 flex flex-row items-center text-blue-600" href="Acceuil.aspx">
-            <img class="h-12 w-12 rounded-xl" src="img/pdf.jpg" />
-            Télécharger les documments
+        <a class="ml-6 flex flex-row items-center text-blue-600" href="PDF/Règlements%20des%20marchés.rar" download="Reglements_des_marches.rar">
+            <img class="h-12 w-12 rounded-xl" src="img/pdf.jpg" alt="Download Icon" />
+            Télécharger les documents
         </a>
+
     </div>
       </main>
 
