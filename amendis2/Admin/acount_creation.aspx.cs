@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Web.UI;
 using amendis2.Models;
 using Microsoft.AspNet.Identity;
@@ -33,6 +35,8 @@ namespace amendis2.Admin
             string password = PasswordTextBox.Text.Trim();
             string email = EmailTextBox.Text.Trim();
             string selectedRoleName = RoleDropDownList.SelectedValue;
+            string nomSociete = NomSocieteTextBox.Text.Trim();
+            string activite = ActiviteTextBox.Text.Trim();
 
             // Create a new user
             var user = new ApplicationUser
@@ -46,6 +50,9 @@ namespace amendis2.Admin
 
             if (result.Succeeded)
             {
+                // Update the additional fields manually
+                UpdateUserAdditionalInfo(user.Id, nomSociete, activite);
+
                 // Retrieve the RoleId by RoleName
                 var role = _roleManager.FindByName(selectedRoleName);
                 if (role != null)
@@ -80,5 +87,26 @@ namespace amendis2.Admin
                 SuccessMessageLabel.Visible = true;
             }
         }
+
+        private void UpdateUserAdditionalInfo(string userId, string nomSociete, string activite)
+        {
+            // Manually update the additional fields in the database
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE [AspNetUsers] SET [NomSociete] = @NomSociete, [Activite] = @Activite WHERE [Id] = @UserId";
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NomSociete", nomSociete);
+                    command.Parameters.AddWithValue("@Activite", activite);
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
     }
 }
