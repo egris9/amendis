@@ -1,13 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AoEncours.aspx.cs" Inherits="amendis2.AoEncours" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main>
-  
+              <!-- header -->
         <div class="mb-2 ml-36 mt-14 flex">
           <div>
             <h2 class="text-4xl font-medium">Appels d'offres en cours</h2>
           </div>
         </div>
+
         <br />
+        <!-- search section -->
     <div class="max-w-[85%] mx-auto mb-2 flex w-full items-center justify-end">
         <span class="mr-2 mt-1.5 h-10 text-lg font-medium">Chercher:</span>
          <asp:TextBox ID="SearchTextBox" runat="server" CssClass="h-10 rounded border px-5"></asp:TextBox>
@@ -18,7 +20,7 @@
     <br />
 
 
-
+        <!-- table section -->
      <asp:GridView ID="GridView1" runat="server" Visible="true" EnableViewState="true"
             Font-Size="Medium" AutoGenerateColumns="False" DataSourceI="SqlDataSource1"
             AllowPaging="True" PageSize="12" AllowSorting="True" CellPadding="3"
@@ -90,6 +92,7 @@
         </asp:GridView>
 
 
+        <!-- db connection section -->
                 <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>'  ProviderName='<%$ ConnectionStrings:DefaultConnection.ProviderName %>' SelectCommand="SET DATEFORMAT DMY; SELECT Numero_Ao,Designa,Date_lan,Date_rec,Date_rem,Date_ouv_adm,Date_ouv_fin,Type,Nature,Type_projet,Direction,Res_projet,Site,Financement,Mode_lan,Statut,Frais_dos,Numero_lot,Libelle,Impu_bud,Montant_bud,Montant_est,Observation,DATEDIFF(d,date_rec,getdate()) as Nbr_jour,Seance_ouv,Date_rep1, Date_rep2 FROM V_AO_AO WHERE rtrim(isnull(statut,'')) !='ANNULE' AND rtrim(isnull(statut,'')) !='INFRUCTUEUX'  AND rtrim(isnull(statut,'')) <> 'AUCUNE OFFRE' AND id_ao not in (select id_ao from ao_marches where date_adj is not null) ORDER BY numero_ao" >
                     <SelectParameters>
                         <asp:Parameter DefaultValue="FD" Name="SearchTerm" Type="String"></asp:Parameter>
